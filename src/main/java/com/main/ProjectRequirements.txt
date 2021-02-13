@@ -1,13 +1,14 @@
-The name of this App is MOZAMA.
+The name of this App is NOZAMA.
 
 The Electronic Store purpose is to facilitate the daily operations between a Online Store and customers of that shop.
 
-It needs to simulate different proccesses, from Customer to Shop:
+It needs to simulate different processes, from Customer to Shop:
 
-Customer: Observation of the shop website. Registration in the Shop. Add money to his account. Observation of the personal profile with its characteristics and the option of visualazing the list or products available. Choose products and have a final list with all products selected. Get its money substracted. Get a record of his last operations.
+Customer: Observation of the shop website. Registration in the Shop. Add money to his account. Observation of the personal profile with its characteristics and the option of visualizing the list or products available. Choose products and have a final list with all products selected. Get its money subtracted. Get a record of his last operations.
 
 Shop: Show the shop website. Administrator account with different possibilities: Add new products, List of all products available, Substract products sold. ADD Money according to the sales done. List of all sales done.
 
+Add Roles: in the website you will have two options to access the shop; as owner or as a customer.
 --------------------------------------------
 
 Customer:
@@ -15,9 +16,9 @@ Customer:
 1. Observation of the shop website: you can see a list, boxes, of different products available. A square in order to make the login or sign up if you want to register.
 2. Registration in the shop: once you click that Square, you can enter information and by clicking finished, a new account and user is created.
 3. Personal profile with information of the customer, money available, possibility to add money and lasts orders made.
-4. Visualazing the producst available: see, again a list or boxes of products availables with the possibility to add them to the cart.
+4. Visualize the products available: see, again a list or boxes of products available with the possibility to add them to the cart.
 5. Press button of ending the purchase and get a printed ticket.
-6. SUbstract the money used.
+6. Subtract the money used.
 7. See again the profile with a new purchase added to its list.
 
 
@@ -25,7 +26,7 @@ Shop:
 
 1. Show the shop website.
 2. Have an administration account with possibility to do different things: Add new products, list all products available, substract products sold.
-3. With every interaction they get products substracted and receive money.
+3. With every interaction they get products subtracted and receive money.
 4. List of all operations done.
 
 ---------------------------------
@@ -38,12 +39,12 @@ C3: Name, Surname, Age, Money available, Last purchases, Possibility to add more
 C4: Front end side. Possibility to press the products in order to add them to the purchase1 list.
 C5: Possibility to press a button in order to finish the purchase.
 C5:Possibility to press a button in order to finish the purchase.
-C6: Substract the money.
+C6: Subtract the money.
 C7: Automatic come back to profile or a button to come back to the profile.
 
 S1: Frontend side.
 S2: Master account with a window that shows different operations possible for the owner of NOZAMA. ADD, SHOW, DELETE.
-S3: Update the database with every customer interaction and show the stock availble in real time.
+S3: Update the database with every customer interaction and show the stock available in real time.
 S4: List of all the customers with their operations done.
 
 ---------------------------
