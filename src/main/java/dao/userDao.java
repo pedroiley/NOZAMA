@@ -1,6 +1,6 @@
 package dao;
 
-import entity.user;
+import entity.User;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
