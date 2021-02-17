@@ -6,9 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class userDao{
+public class UserDao {
 
-    public userDao() {
+    public UserDao() {
     }
 
     public void createUser(User user) {

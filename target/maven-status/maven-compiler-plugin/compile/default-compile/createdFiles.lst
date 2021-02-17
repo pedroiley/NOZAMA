@@ -1,2 +1,4 @@
-com\main\Main.class
+entity\User.class
+dao\UserDao.class
 util\Hibernate.class
+com\main\Main.class
