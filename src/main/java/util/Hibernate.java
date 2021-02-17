@@ -19,7 +19,7 @@ public class Hibernate {
             Configuration configuration = new Configuration();
             Properties properties = new Properties();
             properties.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-            properties.put(Environment.URL, "jdbc:mysql://localhost:3306/electronicStore?createDatabaseIfNotExist=true&serverTimezone=UTC");
+            properties.put(Environment.URL, "jdbc:mysql://localhost:3306/Nozama?createDatabaseIfNotExist=true&serverTimezone=UTC");
             properties.put(Environment.USER, applicationProperties.getString("dbUsername"));
             properties.put(Environment.PASS, applicationProperties.getString("dbPassword"));
             properties.put(Environment.SHOW_SQL, "true");
