@@ -58,3 +58,54 @@ C4: Spring, Angular?
 C5: Java
 
 
+----------------------------------
+
+User Story Format:
+
+User Story NZA-1:
+
+Given admin user is created
+When login with a username and password
+Then user is logged in with admin role
+
+User Story NZA-2:
+
+Given user list is empty
+When a new user is created with a username and password
+Then a new user is available for login with an empty wallet
+
+User Story NZA-3:
+
+Given a new user with an empty wallet
+When user adds money to the wallet
+Then wallet has credit to make purchases
+
+User Story NZA-4:
+
+Given an empty admin product list (warehouse)
+When refilling warehouse with the desired products
+Then product list (warehouse) is filled
+
+User Story NZA-5:
+
+Given an empty customer product list (cart)
+When user fills the cart with the desired products
+Then product list (cart) is filled
+
+User Story NZA-6:
+
+Given a filled cart
+When the user presses pay button
+Then money is subtracted from users wallet and added to owners account
+And a ticket (operation) is issued
+And products are subtracted from warehouse
+And products are subtracted from cart
+And products are added to clients warehouse
+
+User Story NZA-7:
+
+Given a purchase done
+When user logs out
+Then user session is closed
+
+
