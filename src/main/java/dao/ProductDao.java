@@ -1,22 +1,22 @@
 package dao;
 
-import entity.User;
+import entity.Product;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class UserDao {
+public class ProductDao {
     private static Session session = Hibernate.getSessionFactory().openSession();
 
-    public UserDao() {
+    public ProductDao() {
     }
 
-    public void createUser(User user) {
+    public void createProduct(Product product) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(user);
+            session.save(product);
             transaction.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -27,28 +27,28 @@ public class UserDao {
         session.close();
     }
 
-    public User getUser(Long userId) {
+    public Product getProduct(Long productId) {
         try {
-            User user = session.find(User.class, userId);
+            Product product = session.find(Product.class, productId);
             session.close();
-            return user;
+            return product;
         } catch (Exception ex) {
             session.close();
-            System.out.println("Unable to find the user with id: " + userId);
+            System.out.println("Unable to find the product with id: " + productId);
             ex.printStackTrace();
             return null;
         }
     }
 
-    public List<User> getUser() {
-        return session.createQuery("from User", User.class).list();
+    public List<Product> getProduct() {
+        return session.createQuery("from Product", Product.class).list();
     }
 
-    public void updateUser(User savedUser) {
+    public void updateProduct(Product savedProduct) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(savedUser);
+            session.update(savedProduct);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -59,11 +59,11 @@ public class UserDao {
         session.close();
     }
 
-    public void deleteUser(User savedUser) {
+    public void deleteProduct(Product savedProduct) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.delete(savedUser);
+            session.delete(savedProduct);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();

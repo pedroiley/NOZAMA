@@ -1,22 +1,22 @@
 package dao;
 
-import entity.User;
+import entity.Cart;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class UserDao {
+public class CartDao {
     private static Session session = Hibernate.getSessionFactory().openSession();
 
-    public UserDao() {
+    public CartDao() {
     }
 
-    public void createUser(User user) {
+    public void createCart(Cart cart) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(user);
+            session.save(cart);
             transaction.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -27,28 +27,28 @@ public class UserDao {
         session.close();
     }
 
-    public User getUser(Long userId) {
+    public Cart getCart(Long cartId) {
         try {
-            User user = session.find(User.class, userId);
+            Cart cart = session.find(Cart.class, cartId);
             session.close();
-            return user;
+            return cart;
         } catch (Exception ex) {
             session.close();
-            System.out.println("Unable to find the user with id: " + userId);
+            System.out.println("Unable to find the cart with id: " + cartId);
             ex.printStackTrace();
             return null;
         }
     }
 
-    public List<User> getUser() {
-        return session.createQuery("from User", User.class).list();
+    public List<Cart> getCart() {
+        return session.createQuery("from Cart", Cart.class).list();
     }
 
-    public void updateUser(User savedUser) {
+    public void updateCart(Cart savedCart) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(savedUser);
+            session.update(savedCart);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -59,11 +59,11 @@ public class UserDao {
         session.close();
     }
 
-    public void deleteUser(User savedUser) {
+    public void deleteCart(Cart savedCart) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.delete(savedUser);
+            session.delete(savedCart);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
