@@ -13,9 +13,13 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        User u = new User("Pedro","Iglesias","Fake@Email","Test@123", Role.Admin);
-        UserDao UDao = new UserDao();
-        UDao.createUser(u);
+//        User u = new User("Pedro","Iglesias","Fake@Email","Test@123", Role.Admin);
+//        UserDao UDao = new UserDao();
+//        UDao.createUser(u);
+
+        CreateUser();
+        CreateCart();
+        CreateProduct();
 
 
 //        DeleteUser();
@@ -24,6 +28,21 @@ public class Main {
     }
 
     private static void CreateUser(){
+        User u = new User();
+        UserDao UDao = new UserDao();
+        UDao.createUser(u);
+    }
+
+    private static void CreateCart(){
+        Cart c = new Cart();
+        CartDao CDao = new CartDao();
+        CDao.createCart(c);
+    }
+
+    private static void CreateProduct(){
+        Product p = new Product();
+        ProductDao PDao = new ProductDao();
+        PDao.createProduct(p);
 
     }
 
