@@ -1,12 +1,13 @@
 package com.main;
 
-import dao.CartDao;
+import dao.OrderDao;
+import dao.OrderItemDao;
 import dao.ProductDao;
 import dao.UserDao;
-import entity.Cart;
+import entity.Order;
+import entity.OrderItem;
 import entity.Product;
 import entity.User;
-import util.Role;
 
 import java.util.List;
 
@@ -16,10 +17,11 @@ public class Main {
 //        User u = new User("Pedro","Iglesias","Fake@Email","Test@123", Role.Admin);
 //        UserDao UDao = new UserDao();
 //        UDao.createUser(u);
-
-        CreateUser();
-        CreateCart();
+//
+        User u = CreateUser();
+        CreateOrder(u);
         CreateProduct();
+        CreateOrderItem();
 
 
 //        DeleteUser();
@@ -27,16 +29,23 @@ public class Main {
 //        DeleteCart();
     }
 
-    private static void CreateUser(){
+    private static void CreateOrderItem() {
+        OrderItem Oi = new OrderItem();
+        OrderItemDao OIDao = new OrderItemDao();
+        OIDao.createOrderItem(Oi);
+    }
+
+    private static User CreateUser(){
         User u = new User();
         UserDao UDao = new UserDao();
         UDao.createUser(u);
+        return u;
     }
 
-    private static void CreateCart(){
-        Cart c = new Cart();
-        CartDao CDao = new CartDao();
-        CDao.createCart(c);
+    private static void CreateOrder(User user){
+        Order o = new Order(user);
+        OrderDao ODao = new OrderDao();
+        ODao.createOrder(o);
     }
 
     private static void CreateProduct(){
@@ -52,10 +61,10 @@ public class Main {
         UDao.deleteUser(UserList.get(0));
     }
 
-    private static void DeleteCart() {
-        CartDao CDao = new CartDao();
-        List<Cart> CartList = CDao.getCart();
-        CDao.deleteCart(CartList.get(0));
+    private static void DeleteOrder() {
+        OrderDao ODao = new OrderDao();
+        List<Order> OrderList = ODao.getOrders();
+        ODao.deleteOrder(OrderList.get(0));
     }
 
     private static void DeleteProduct() {

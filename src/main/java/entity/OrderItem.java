@@ -8,21 +8,21 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = "carts", name = "cart")
-public class Cart {
+@Table(schema = "orderItems", name = "orderItem")
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_Id")
-    private Long cartId;
+    @Column(name = "orderItem_Id")
+    private Long orderItemId;
 
     @Column(name = "product_Id")
     private int productId;
 
-    @Column(name = "final_Price")
-    private int finalPrice;
+    @Column(name = "order_Id")
+    private int orderId;
 
-    @Column(name = "amount")
-    private int amount;
+    @Column(name = "quantity")
+    private int quantity;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -34,22 +34,22 @@ public class Cart {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Cart(Long cartId, int productId, int finalPrice, int amount) {
-        this.cartId = cartId;
+    public OrderItem(Long orderItemId, int productId, int orderId, int quantity) {
+        this.orderItemId = orderItemId;
         this.productId = productId;
-        this.finalPrice = finalPrice;
-        this.amount = amount;
+        this.orderId = orderId;
+        this.quantity = quantity;
     }
 
-    public Cart() {
+    public OrderItem() {
     }
 
-    public Long getCartId() {
-        return cartId;
+    public Long getOrderItemId() {
+        return orderItemId;
     }
 
-    public void setCartId(Long cartId) {
-        this.cartId = cartId;
+    public void setOrderItemId(Long orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
     public int getProductId() {
@@ -60,20 +60,20 @@ public class Cart {
         this.productId = productId;
     }
 
-    public int getFinalPrice() {
-        return finalPrice;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setFinalPrice(int finalPrice) {
-        this.finalPrice = finalPrice;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Date getCreatedAt() {
@@ -94,10 +94,10 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart{" +
-                "cartId=" + cartId +
+        return "OrderItem{" +
+                "orderId=" + orderId +
                 "productId=" + productId +
-                ", amount=" + amount +
+                ", quantity=" + quantity +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
