@@ -1,22 +1,22 @@
 package dao;
 
-import entity.Cart;
+import entity.Order;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class CartDao {
+public class OrderDao {
     private static Session session = Hibernate.getSessionFactory().openSession();
 
-    public CartDao() {
+    public OrderDao() {
     }
 
-    public void createCart(Cart cart) {
+    public void createOrder(Order order) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(cart);
+            session.save(order);
             transaction.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -27,28 +27,28 @@ public class CartDao {
         session.close();
     }
 
-    public Cart getCart(Long cartId) {
+    public Order getOrder(Long orderId) {
         try {
-            Cart cart = session.find(Cart.class, cartId);
+            Order order = session.find(Order.class, orderId);
             session.close();
-            return cart;
+            return order;
         } catch (Exception ex) {
             session.close();
-            System.out.println("Unable to find the cart with id: " + cartId);
+            System.out.println("Unable to find the order with id: " + orderId);
             ex.printStackTrace();
             return null;
         }
     }
 
-    public List<Cart> getCart() {
-        return session.createQuery("from Cart", Cart.class).list();
+    public List<Order> getOrders() {
+        return session.createQuery("from orders", Order.class).list();
     }
 
-    public void updateCart(Cart savedCart) {
+    public void updateOrder(javax.persistence.criteria.Order savedOrder) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(savedCart);
+            session.update(savedOrder);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -59,11 +59,11 @@ public class CartDao {
         session.close();
     }
 
-    public void deleteCart(Cart savedCart) {
+    public void deleteOrder(Order savedOrder) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.delete(savedCart);
+            session.delete(savedOrder);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
