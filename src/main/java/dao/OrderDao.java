@@ -7,12 +7,11 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class OrderDao {
-    private static Session session = Hibernate.getSessionFactory().openSession();
-
     public OrderDao() {
     }
 
     public void createOrder(Order order) {
+        Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -28,6 +27,7 @@ public class OrderDao {
     }
 
     public Order getOrder(Long orderId) {
+        Session session = Hibernate.getSessionFactory().openSession();
         try {
             Order order = session.find(Order.class, orderId);
             session.close();
@@ -41,10 +41,12 @@ public class OrderDao {
     }
 
     public List<Order> getOrders() {
+        Session session = Hibernate.getSessionFactory().openSession();
         return session.createQuery("from orders", Order.class).list();
     }
 
     public void updateOrder(javax.persistence.criteria.Order savedOrder) {
+        Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -60,6 +62,7 @@ public class OrderDao {
     }
 
     public void deleteOrder(Order savedOrder) {
+        Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
