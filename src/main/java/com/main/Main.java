@@ -5,6 +5,7 @@ import entity.Order;
 import entity.OrderItem;
 import entity.Product;
 import entity.User;
+import util.Type;
 
 import java.util.List;
 import java.util.Scanner;
@@ -38,6 +39,7 @@ public class Main {
         User u = DM.getUserDao().getUser(2L);
 
         System.out.println(u);
+        fillStock();
 //
 //
 //        System.out.println();
@@ -106,4 +108,13 @@ public class Main {
         List<Product> ProductList = PDao.getProduct();
         PDao.deleteProduct(ProductList.get(0));
     }
+
+    private static void fillStock(){
+        Product p1 = new Product(Type.TV,300,"samsung300",100);
+        Product p2 = new Product(Type.PHONE,500,"iPhone10",100);
+        ProductDao PDao = new ProductDao();
+        PDao.createProduct(p1);
+        PDao.createProduct(p2);
+    }
+
 }

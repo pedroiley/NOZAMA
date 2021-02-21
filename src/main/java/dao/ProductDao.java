@@ -41,6 +41,20 @@ public class ProductDao {
         }
     }
 
+    public Product getProduct(String name) {
+        Session session = Hibernate.getSessionFactory().openSession();
+        try {
+            Product product = session.find(Product.class, name);
+            session.close();
+            return product;
+        } catch (Exception ex) {
+            session.close();
+            System.out.println("Unable to find the product with name: " + name);
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public List<Product> getProduct() {
         Session session = Hibernate.getSessionFactory().openSession();
         return session.createQuery("from Product", Product.class).list();
