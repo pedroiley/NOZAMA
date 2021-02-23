@@ -37,7 +37,7 @@ public class Product {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Product(Type type, int price, String name, int amount) {
+    public Product(String name, int price, Type type, int amount) {
 
         this.type = type;
         this.price = price;

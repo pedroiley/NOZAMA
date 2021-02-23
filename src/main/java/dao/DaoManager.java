@@ -1,7 +1,5 @@
 package dao;
 
-import entity.User;
-
 public class DaoManager {
 
     private OrderDao orderDao;

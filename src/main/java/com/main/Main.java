@@ -14,9 +14,12 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static DaoManager DM = new DaoManager();
+
+
     public static void main(String[] args) {
 
-        DaoManager DM = new DaoManager();
+
 //
 //        System.out.println("This terminal is to interact and test the changes in the platform");
 //
@@ -41,7 +44,7 @@ public class Main {
 //        User u = DM.getUserDao().getUser(2L);
 //
 //        System.out.println(u);
-        fillStock();
+//        fillStock();
 
 
         System.out.println("StockFilled");
@@ -112,12 +115,12 @@ public class Main {
         PDao.deleteProduct(ProductList.get(0));
     }
 
-    private static void fillStock(){
-        Product p1 = new Product(Type.TV,300,"samsung300",100);
-        Product p2 = new Product(Type.PHONE,500,"iPhone10",100);
-        ProductDao PDao = new ProductDao();
-        PDao.createProduct(p1);
-        PDao.createProduct(p2);
-    }
+//    private static void fillStock(){
+//        Product p1 = new Product(Type.TV,300,"samsung300",100);
+//        Product p2 = new Product(Type.PHONE,500,"iPhone10",100);
+//        ProductDao PDao = new ProductDao();
+//        PDao.createProduct(p1);
+//        PDao.createProduct(p2);
+//    }
 
 }
