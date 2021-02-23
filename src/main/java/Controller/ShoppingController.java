@@ -1,4 +1,4 @@
-package controller;
+package Controller;
 
 import dao.DaoManager;
 import entity.Product;
