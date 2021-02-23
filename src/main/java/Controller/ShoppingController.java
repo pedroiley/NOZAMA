@@ -61,6 +61,7 @@ public class ShoppingController {
         System.out.println("Enter a quantity");
         int amount1 = scanAmount.nextInt();
         user.setBankAccount(user.getBankAccount() + amount1);
+        ud.updateUser(user);
         return user;
 
     }
