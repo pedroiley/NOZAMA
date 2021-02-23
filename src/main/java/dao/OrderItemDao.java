@@ -1,23 +1,22 @@
 package dao;
 
-import entity.Product;
+import entity.OrderItem;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.Type;
-
 import java.util.List;
 
-public class ProductDao{
-        public ProductDao() {
+public class OrderItemDao {
+
+    public OrderItemDao() {
     }
 
-    public void createProduct(Product product) {
+    public void createOrderItem(OrderItem orderItem) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(product);
+            session.save(orderItem);
             transaction.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -28,45 +27,31 @@ public class ProductDao{
         session.close();
     }
 
-    public Product getProduct(Long productId) {
+    public OrderItem getOrderItem(Long orderItemId) {
         Session session = Hibernate.getSessionFactory().openSession();
         try {
-            Product product = session.find(Product.class, productId);
+            OrderItem orderItem = session.find(OrderItem.class, orderItemId);
             session.close();
-            return product;
+            return orderItem;
         } catch (Exception ex) {
             session.close();
-            System.out.println("Unable to find the product with id: " + productId);
+            System.out.println("Unable to find the orderItem with id: " + orderItemId);
             ex.printStackTrace();
             return null;
         }
     }
 
-    public Product getProduct(String name) {
+    public List<OrderItem> getOrderItems() {
         Session session = Hibernate.getSessionFactory().openSession();
-        try {
-            Product product = session.find(Product.class, name);
-            session.close();
-            return product;
-        } catch (Exception ex) {
-            session.close();
-            System.out.println("Unable to find the product with name: " + name);
-            ex.printStackTrace();
-            return null;
-        }
+        return session.createQuery("from OrderItem", OrderItem.class).list();
     }
 
-    public List<Product> getProduct() {
-        Session session = Hibernate.getSessionFactory().openSession();
-        return session.createQuery("from Product", Product.class).list();
-    }
-
-    public void updateProduct(Product savedProduct) {
+    public void updateOrderItem(OrderItem savedOrderItem) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(savedProduct);
+            session.update(savedOrderItem);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -77,12 +62,12 @@ public class ProductDao{
         session.close();
     }
 
-    public void deleteProduct(Product savedProduct) {
+    public void deleteOrderItem(OrderItem savedOrderItem) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.delete(savedProduct);
+            session.delete(savedOrderItem);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();

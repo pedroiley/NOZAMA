@@ -2,9 +2,10 @@ package util;
 
 import java.util.Properties;
 
-import entity.Cart;
+import entity.Order;
 import entity.Product;
 import entity.User;
+import entity.OrderItem;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -32,7 +33,8 @@ public class Hibernate {
             configuration.setProperties(properties);
             // all entities need to be registered
             configuration.addAnnotatedClass(User.class);
-            configuration.addAnnotatedClass(Cart.class);
+            configuration.addAnnotatedClass(Order.class);
+            configuration.addAnnotatedClass(OrderItem.class);
             configuration.addAnnotatedClass(Product.class);
 //            configuration.addAnnotatedClass(CLASSNAME.class);
 
