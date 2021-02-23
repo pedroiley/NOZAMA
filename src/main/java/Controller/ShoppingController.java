@@ -1,14 +1,12 @@
-package Controller;
+package controller;
 
-import dao.ProductDao;
-import dao.UserDao;
+import dao.DaoManager;
 import entity.Product;
 import entity.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import util.Type;
 
 import java.util.List;
 import java.util.Scanner;
@@ -18,8 +16,8 @@ import java.util.Scanner;
 
 //@RequestMapping("/purchase")
 public class ShoppingController {
-    ProductDao pd = new ProductDao();
-    UserDao ud = new UserDao();
+
+    DaoManager DM = new DaoManager();
 
 
     public static void main(String[] args) {
@@ -44,26 +42,53 @@ public class ShoppingController {
     }
 
     @GetMapping("/productList")
-    public List<Product> stockAvailable(Product products){
-        List<Product> productList = pd.getProduct();
+    @ResponseBody
+    public List<Product> stockAvailable(){
+        List<Product> productList = DM.getProductDao().getProduct();
 
         return productList;
     }
+
+    @PostMapping("/productList/Add")
+    public void addProduct(@RequestBody String name)
+    {
+        addInventoryItem(name);
+    }
+
 
     @GetMapping("/bankAccount")
     public User updateBankAccount(User users){
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter an ID");
         long id1 = scan.nextLong();
-        User user = ud.getUser(id1);
+        User user = DM.getUserDao().getUser(id1);
         System.out.println(user);
         Scanner scanAmount = new Scanner(System.in);
         System.out.println("Enter a quantity");
         int amount1 = scanAmount.nextInt();
         user.setBankAccount(user.getBankAccount() + amount1);
-        ud.updateUser(user);
+        DM.getUserDao().updateUser(user);
         return user;
 
+    }
+
+    private void addInventoryItem(String name)
+    {
+        name = name.toUpperCase();
+        if(name.equals("TV"))
+        {
+            Product TV = new Product("TV", 200, Type.TV, 1);
+            DM.getProductDao().createProduct(TV);
+        }
+        else if (name.equals("PHONE"))
+        {
+            Product Phone = new Product("Phone", 99, Type.PHONE,1);
+            DM.getProductDao().createProduct(Phone);
+        }
+        else
+        {
+            System.out.println("Product was not found.");
+        }
     }
 }
 
