@@ -1,11 +1,12 @@
 package Controller;
 
 import dao.ProductDao;
+import dao.UserDao;
 import entity.Product;
+import entity.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import java.util.Scanner;
 //@RequestMapping("/purchase")
 public class ShoppingController {
     ProductDao pd = new ProductDao();
+    UserDao ud = new UserDao();
 
 
     public static void main(String[] args) {
@@ -48,5 +50,19 @@ public class ShoppingController {
         return productList;
     }
 
+    @GetMapping("/bankAccount")
+    public User updateBankAccount(User users){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter an ID");
+        long id1 = scan.nextLong();
+        User user = ud.getUser(id1);
+        System.out.println(user);
+        Scanner scanAmount = new Scanner(System.in);
+        System.out.println("Enter a quantity");
+        int amount1 = scanAmount.nextInt();
+        user.setBankAccount(user.getBankAccount() + amount1);
+        return user;
+
+    }
 }
 
