@@ -27,6 +27,9 @@ public class User {
     @Column(name = "role")
     private Role role;
 
+    @Column(name = "bankAccount")
+    private int bankAccount;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -40,18 +43,20 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String email, String password, Role role) {
+    public User(String userName, String email, String password, Role role, int bankAccount) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.bankAccount = bankAccount;
     }
 
-    public User(String userName, String email, String password) {
+    public User(String userName, String email, String password, int bankAccount) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.role = Role.Regular;
+        this.bankAccount = bankAccount;
     }
 
     public Long getId() {
@@ -102,6 +107,14 @@ public class User {
         this.role = role;
     }
 
+    public int getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(int bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -110,6 +123,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password=" + password +
                 ", role=" + role +
+                ", bankAccount=" + bankAccount +
                 '}';
     }
 }
