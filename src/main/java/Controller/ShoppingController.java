@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import util.Type;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -49,12 +50,12 @@ public class ShoppingController {
         return productList;
     }
 
-    @PostMapping("/productList/Add")
-    public void addProduct(@RequestBody String name)
+    @PostMapping(path = "/productList/Add", consumes = "application/json")
+    @ResponseBody
+    public void addProduct(@RequestBody Map<String,Object> body)
     {
-        addInventoryItem(name);
+        addInventoryItem(body.get("name").toString());
     }
-
 
     @GetMapping("/bankAccount")
     public User updateBankAccount(User users){
