@@ -1,6 +1,7 @@
 package controller;
 
 import dao.DaoManager;
+import entity.Order;
 import entity.Product;
 import entity.User;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import util.Role;
 import util.Type;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -25,17 +27,53 @@ public class ShoppingController {
     public static void main(String[] args) {
         SpringApplication.run(ShoppingController.class, args);
     }
-//
-//    public void insertOrder(Product products){
-//        Scanner scan = new Scanner(System.in);
-//        System.out.println("Enter a product");
-//        String product1 = scan.next();
-//        if(product1.equals("iPhone9")){
-//            Product savedProduct = pd.getProduct(product1);
+    @PostMapping(path = "/Order", consumes = "application/json")
+    @ResponseBody
+    public void createOrder(@RequestBody Map<String, Integer> body){
+        Order or = new Order(body.get("userId"));
+
+        DM.getOrderDao().createOrder(or);
+
+
+    }
+
+
+
+
+
+//    int memory = 0;
+//    List<Product> order1 = new ArrayList<>();
+
+//        while(memory < 1){
+//            System.out.println("You can now buy something");
+//            Scanner scan = new Scanner(System.in);
+//            System.out.println("Enter a product or PAY");
+//            String product1 = scan.next();
+//          if(  product1.equals("iPhone9")){
+//            Product savedProduct = DM.getProductDao().getProduct(product1);
+//            Product orderedProduct = savedProduct;
+//            order1.add(orderedProduct);
 //            savedProduct.setAmount(savedProduct.getAmount()-1);
-//            pd.updateProduct(savedProduct);
+//            DM.getProductDao().updateProduct(savedProduct);
+//            memory = 0;
+//        }else if(  product1.equals("Samsung300")){
+//              Product savedProduct = DM.getProductDao().getProduct(product1);
+//              Product orderedProduct = savedProduct;
+//              order1.add(orderedProduct);
+//              savedProduct.setAmount(savedProduct.getAmount()-1);
+//              DM.getProductDao().updateProduct(savedProduct);
+//              memory = 0;
+//          }
+//          else if(  product1.equals("PAY")){
+//              System.out.println("Those are your products");
+//              System.out.println(order1);
+//              System.out.println("The amount to pay is");
+//
+//                memory = 1;
+//            }
 //        }
 //    }
+
 
 
     @GetMapping("/hello")

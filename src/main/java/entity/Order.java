@@ -16,7 +16,7 @@ public class Order {
     private Long orderId;
 
     @Column(name = "user_Id")
-    private Long userId;
+    private int userId;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -28,8 +28,8 @@ public class Order {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Order(User user) {
-        this.userId = user.getId();
+    public Order(int userId) {
+        this.userId = userId;
     }
 
     public Long getOrderId() {
@@ -40,11 +40,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
