@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import dao.DaoManager;
 import entity.Product;
@@ -6,6 +6,7 @@ import entity.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
+import util.Role;
 import util.Type;
 
 import java.util.List;
@@ -57,6 +58,13 @@ public class ShoppingController {
         addInventoryItem(body.get("name").toString());
     }
 
+    @PostMapping(path = "/user/create", consumes = "application/json")
+    @ResponseBody
+    public void CreateNewUser(@RequestBody Map<String, Object> body)
+    {
+        AddNewUser(body.get("username").toString(), body.get("password").toString());
+    }
+
     @GetMapping("/bankAccount")
     public User updateBankAccount(User users){
         Scanner scan = new Scanner(System.in);
@@ -90,6 +98,12 @@ public class ShoppingController {
         {
             System.out.println("Product was not found.");
         }
+    }
+
+    private void AddNewUser(String username, String password)
+    {
+        User u = new User(username," ", password, Role.Regular, 0);
+        DM.getUserDao().createUser(u);
     }
 }
 
