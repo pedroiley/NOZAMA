@@ -64,22 +64,6 @@ public class OrderDao {
         return session.createQuery("from orders", Order.class).list();
     }
 
-    public void updateOrder(javax.persistence.criteria.Order savedOrder) {
-        Session session = Hibernate.getSessionFactory().openSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            session.update(savedOrder);
-            transaction.commit();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-        session.close();
-    }
-
     public void deleteOrder(Order savedOrder) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
