@@ -40,6 +40,8 @@ public class OrderDao {
         }
     }
 
+
+
     public List<Order> getOrders() {
         Session session = Hibernate.getSessionFactory().openSession();
         return session.createQuery("from orders", Order.class).list();

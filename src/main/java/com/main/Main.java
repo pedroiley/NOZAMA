@@ -84,11 +84,11 @@ public class Main {
         return u;
     }
 
-    private static void CreateOrder(int userId){
-        Order o = new Order(userId);
-        OrderDao ODao = new OrderDao();
-        ODao.createOrder(o);
-    }
+//    private static void CreateOrder(int userId){
+//        Order o = new Order(userId);
+//        OrderDao ODao = new OrderDao();
+//        ODao.createOrder(o);
+//    }
 
     private static void CreateProduct(){
         Product p = new Product();

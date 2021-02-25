@@ -37,6 +37,18 @@ public class ShoppingController {
 
     }
 
+    @DeleteMapping(path = "/Order", consumes = "application/json")
+    @ResponseBody
+    public void deleteOrder(@RequestBody Map<String, Long> body){
+
+
+      Order or2 =  DM.getOrderDao().getOrder(body.get("orderId"));
+
+        DM.getOrderDao().deleteOrder(or2);
+
+
+    }
+
 
 
 

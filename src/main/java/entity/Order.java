@@ -32,6 +32,10 @@ public class Order {
         this.userId = userId;
     }
 
+    public Order(){
+    }
+
+
     public Long getOrderId() {
         return orderId;
     }
