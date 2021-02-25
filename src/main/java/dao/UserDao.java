@@ -41,7 +41,7 @@ public class UserDao {
         }
     }
 
-    public List<User> getUser() {
+    public List<User> getUsers() {
         Session session = Hibernate.getSessionFactory().openSession();
         return session.createQuery("from User", User.class).list();
     }

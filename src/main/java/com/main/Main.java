@@ -6,11 +6,8 @@ import entity.OrderItem;
 import entity.Product;
 import entity.User;
 import util.Role;
-import util.Type;
 
-import java.sql.SQLOutput;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
@@ -99,7 +96,7 @@ public class Main {
 
     private static void DeleteUser() {
         UserDao UDao = new UserDao();
-        List<User> UserList = UDao.getUser();
+        List<User> UserList = UDao.getUsers();
         UDao.deleteUser(UserList.get(0));
     }
 
