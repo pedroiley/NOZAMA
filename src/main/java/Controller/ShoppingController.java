@@ -2,6 +2,7 @@ package controller;
 
 import dao.DaoManager;
 import entity.Order;
+import entity.OrderItem;
 import entity.Product;
 import entity.User;
 import org.springframework.boot.SpringApplication;
@@ -10,110 +11,146 @@ import org.springframework.web.bind.annotation.*;
 import util.Role;
 import util.Type;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 @SpringBootApplication
 @RestController
-
-//@RequestMapping("/purchase")
 public class ShoppingController {
 
     DaoManager DM = new DaoManager();
 
-
     public static void main(String[] args) {
         SpringApplication.run(ShoppingController.class, args);
     }
+//    -----------------------------------Order--------------------------------------------------------------
+
     @PostMapping(path = "/Order", consumes = "application/json")
     @ResponseBody
     public void createOrder(@RequestBody Map<String, Integer> body){
         Order or = new Order(body.get("userId"));
 
         DM.getOrderDao().createOrder(or);
+    }
 
+    @PostMapping(path = "/Order", consumes = "application/json")
+    @ResponseBody
+    public void updateOrder(@RequestBody Map<String, Object> body)
+    {
+        Order o = DM.getOrderDao().getOrder((Long)body.get("orderId"));
 
+        o.setUserId((Integer)body.get("userId"));
+        DM.getOrderDao().updateOrder(o);
     }
 
     @DeleteMapping(path = "/Order", consumes = "application/json")
     @ResponseBody
     public void deleteOrder(@RequestBody Map<String, Long> body){
-
-
       Order or2 =  DM.getOrderDao().getOrder(body.get("orderId"));
 
         DM.getOrderDao().deleteOrder(or2);
-
-
     }
 
-
-
-
-
-//    int memory = 0;
-//    List<Product> order1 = new ArrayList<>();
-
-//        while(memory < 1){
-//            System.out.println("You can now buy something");
-//            Scanner scan = new Scanner(System.in);
-//            System.out.println("Enter a product or PAY");
-//            String product1 = scan.next();
-//          if(  product1.equals("iPhone9")){
-//            Product savedProduct = DM.getProductDao().getProduct(product1);
-//            Product orderedProduct = savedProduct;
-//            order1.add(orderedProduct);
-//            savedProduct.setAmount(savedProduct.getAmount()-1);
-//            DM.getProductDao().updateProduct(savedProduct);
-//            memory = 0;
-//        }else if(  product1.equals("Samsung300")){
-//              Product savedProduct = DM.getProductDao().getProduct(product1);
-//              Product orderedProduct = savedProduct;
-//              order1.add(orderedProduct);
-//              savedProduct.setAmount(savedProduct.getAmount()-1);
-//              DM.getProductDao().updateProduct(savedProduct);
-//              memory = 0;
-//          }
-//          else if(  product1.equals("PAY")){
-//              System.out.println("Those are your products");
-//              System.out.println(order1);
-//              System.out.println("The amount to pay is");
-//
-//                memory = 1;
-//            }
-//        }
-//    }
-
-
-
-    @GetMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "MiquelPuto") String name) {
-        return String.format("Hello %s!", name);
-    }
-
-    @GetMapping("/productList")
+    @GetMapping (path = "/Order", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public List<Product> stockAvailable(){
-        List<Product> productList = DM.getProductDao().getProduct();
-
-        return productList;
+    public Order readOrder(@RequestBody Map<String, Object> body)
+    {
+        return DM.getOrderDao().getOrder((Long)body.get("orderId"));
     }
 
-    @PostMapping(path = "/productList/Add", consumes = "application/json")
+    @GetMapping (path = "/Orders")
+    @ResponseBody
+    public List<Order> readOrders()
+    {
+        return DM.getOrderDao().getOrders();
+    }
+
+//-------------------------------------------Product------------------------------------
+
+    @PostMapping(path = "/product", consumes = "application/json")
     @ResponseBody
     public void addProduct(@RequestBody Map<String,Object> body)
     {
         addInventoryItem(body.get("name").toString());
     }
 
-    @PostMapping(path = "/user/create", consumes = "application/json")
+    @PutMapping(path = "/product/{productId}", consumes = "application/json")
+    @ResponseBody
+    public void updateProduct(@PathVariable long productId, @RequestBody Map<String, Object> body)
+    {
+        Product p = new Product(body.get("name").toString(), (Integer)body.get("price"), (Type)body.get("Type"), (Integer)body.get("amount"));
+        DM.getProductDao().updateProduct(productId, p);
+    }
+
+    @GetMapping("/products")
+    @ResponseBody
+    public List<Product> stockAvailable(){
+        return DM.getProductDao().getProduct();
+    }
+
+    @PostMapping(path = "/user", consumes = "application/json")
     @ResponseBody
     public void CreateNewUser(@RequestBody Map<String, Object> body)
     {
         AddNewUser(body.get("username").toString(), body.get("password").toString());
     }
+
+    @DeleteMapping(path = "/user", consumes = "application/json")
+    @ResponseBody
+    public void deleteUser(@RequestBody Map<String, Long> body){
+
+     User   u1 = DM.getUserDao().getUser(body.get("userId"));
+
+        DM.getUserDao().deleteUser(u1);
+    }
+
+//    -----------------------------------Order Item---------------------------------
+
+    @PostMapping(path = "/OrderItem", consumes = "application/json")
+    @ResponseBody
+    public void createOrderItem(@RequestBody Map<String, Object> body){
+        OrderItem oi = new OrderItem((Integer)body.get("productId"), (Integer)body.get("orderId"),1);
+
+        DM.getOrderItemDao().createOrderItem(oi);
+    }
+
+    @DeleteMapping(path = "/OrderItem", consumes = "application/json")
+    @ResponseBody
+    public void deleteOrderItem(@RequestBody Map<String, Long> body){
+        OrderItem oi2 =  DM.getOrderItemDao().getOrderItem(body.get("orderItemId"));
+
+        DM.getOrderItemDao().deleteOrderItem(oi2);
+    }
+
+    @PostMapping(path = "/OrderItem", consumes = "application/json")
+    @ResponseBody
+    public void updateOrderItem(@RequestBody Map<String, Object> body)
+    {
+        OrderItem oi3 = DM.getOrderItemDao().getOrderItem((Long)body.get("orderItemId"));
+
+        oi3.setOrderItemId((Long)body.get("orderItemId"));
+        DM.getOrderItemDao().updateOrderItem(oi3);
+    }
+
+    @GetMapping (path = "/OrderItem", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public OrderItem readOrderItem(@RequestBody Map<String, Object> body)
+    {
+        return DM.getOrderItemDao().getOrderItem((Long)body.get("orderItemId"));
+    }
+
+    @GetMapping (path = "/OrderItems")
+    @ResponseBody
+    public List<OrderItem> readOrderItems()
+    {
+        return DM.getOrderItemDao().getOrderItems();
+    }
+
+//----------------------------------------Other--------------------------------------
+
+
 
     @GetMapping("/bankAccount")
     public User updateBankAccount(User users){
@@ -155,5 +192,6 @@ public class ShoppingController {
         User u = new User(username," ", password, Role.Regular, 0);
         DM.getUserDao().createUser(u);
     }
+
 }
 

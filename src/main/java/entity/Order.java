@@ -32,6 +32,10 @@ public class Order {
         this.userId = userId;
     }
 
+    public Order(Long orderId) {
+        this.orderId = orderId;
+    }
+
     public Order(){
     }
 

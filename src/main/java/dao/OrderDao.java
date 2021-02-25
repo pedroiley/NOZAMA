@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Order;
+import entity.OrderItem;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,6 +20,22 @@ public class OrderDao {
             transaction.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        session.close();
+    }
+
+    public void updateOrder(Order savedOrder) {
+        Session session = Hibernate.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(savedOrder);
+            transaction.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }

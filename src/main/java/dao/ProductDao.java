@@ -77,6 +77,22 @@ public class ProductDao{
         session.close();
     }
 
+    public void updateProduct(long productId, Product savedProduct) {
+        Session session = Hibernate.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(savedProduct);
+            transaction.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        session.close();
+    }
+
     public void deleteProduct(Product savedProduct) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;

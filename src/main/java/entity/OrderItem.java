@@ -34,8 +34,7 @@ public class OrderItem {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public OrderItem(Long orderItemId, int productId, int orderId, int quantity) {
-        this.orderItemId = orderItemId;
+    public OrderItem(int productId, int orderId, int quantity) {
         this.productId = productId;
         this.orderId = orderId;
         this.quantity = quantity;
