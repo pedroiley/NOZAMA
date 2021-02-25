@@ -25,7 +25,7 @@ public class ShoppingController {
         SpringApplication.run(ShoppingController.class, args);
     }
 
-    @PostMapping(path = "/user/create", consumes = "application/json")
+    @PostMapping(path = "/user", consumes = "application/json")
     @ResponseBody
     public void CreateUser(@RequestBody Map<String, Object> body) {
         User u = new User(
@@ -45,7 +45,7 @@ public class ShoppingController {
         return DM.getUserDao().getUsers();
     }
 
-    @DeleteMapping(path = "/user/delete", consumes = "application/json")
+    @DeleteMapping(path = "/user", consumes = "application/json")
     @ResponseBody
     public void DeleteUser(@RequestBody Map<String, Object> body) {
         Long userId = Long.parseLong(body.get("id").toString());
