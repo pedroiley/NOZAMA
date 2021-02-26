@@ -59,6 +59,15 @@ public class User {
         this.bankAccount = bankAccount;
     }
 
+    public void setUserAttributes(String userName, String email, String password, int bankAccount)
+    {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.role = Role.Regular;
+        this.bankAccount = bankAccount;
+    }
+
     public Long getId() {
         return id;
     }
@@ -105,6 +114,14 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getBankAccount() {

@@ -17,7 +17,9 @@ public class OrderItemController {
     @PostMapping(path = "/OrderItem", consumes = "application/json")
     @ResponseBody
     public void createOrderItem(@RequestBody Map<String, Object> body){
-        OrderItem oi = new OrderItem((Integer)body.get("productId"), (Integer)body.get("orderId"),1);
+        OrderItem oi = new OrderItem(
+                (Integer)body.get("productId"),
+                (Integer)body.get("orderId"),1);
 
         DM.getOrderItemDao().createOrderItem(oi);
     }
@@ -28,9 +30,11 @@ public class OrderItemController {
     {
         OrderItem oi3 = DM.getOrderItemDao().getOrderItem(orderItemId);
 
+        oi3.setOrderItems(
+                (int)body.get("productId"),
+                (int)body.get("orderId"),
+                (int)body.get("quantity") );
 
-
-//        oi3.setOrderItemId((Long)body.get("orderItemId"));
         DM.getOrderItemDao().updateOrderItem(oi3);
     }
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import util.Role;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -18,16 +19,43 @@ public class UserController {
     @PostMapping(path = "/user", consumes = "application/json")
     @ResponseBody
     public void CreateNewUser(@RequestBody Map<String, Object> body) {
-        AddNewUser(body.get("username").toString(), body.get("password").toString());
+        AddNewUser(
+                body.get("username").toString(),
+                body.get("password").toString());
     }
 
-    @DeleteMapping(path = "/user", consumes = "application/json")
+    @PutMapping(path = "/user/{userId}", consumes = "application/json")
     @ResponseBody
-    public void deleteUser(@RequestBody Map<String, Long> body) {
+    public void UpdateUser(
+            @PathVariable long userId,
+            @RequestBody Map<String, Object> body) {
+        User u = DM.getUserDao().getUser(userId);
+        u.setUserAttributes(
+                body.get("username").toString(),
+                body.get("password").toString(),
+                body.get("email").toString(),
+                (Integer)body.get("bankAccount"));
+        DM.getUserDao().updateUser(u);
+    }
 
-        User u1 = DM.getUserDao().getUser(body.get("userId"));
+    @DeleteMapping(path = "/user/{userId}", consumes = "application/json")
+    @ResponseBody
+    public void deleteUser(@PathVariable long userId) {
 
+        User u1 = DM.getUserDao().getUser(userId);
         DM.getUserDao().deleteUser(u1);
+    }
+
+    @GetMapping(path = "/user/{userId}", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public User findUser(@PathVariable long userId) {
+        return DM.getUserDao().getUser(userId);
+    }
+
+    @GetMapping(path = "/user/list", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public List<User> findAllUsers() {
+        return DM.getUserDao().getUser();
     }
 
     @GetMapping("/bankAccount")

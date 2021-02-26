@@ -26,8 +26,15 @@ public class ProductController {
     @ResponseBody
     public void updateProduct(@PathVariable long productId, @RequestBody Map<String, Object> body)
     {
-        Product p = new Product(body.get("name").toString(), (Integer)body.get("price"), (Type)body.get("Type"), (Integer)body.get("amount"));
-        DM.getProductDao().updateProduct(productId, p);
+        Product p3 = DM.getProductDao().getProduct(productId);
+
+        p3.setProductValues(
+                body.get("name").toString(),
+                (int)body.get("price"),
+                (Type)body.get("type"),
+                (int)body.get("amount"));
+
+        DM.getProductDao().updateProduct(p3);
     }
 
     @GetMapping("/products")

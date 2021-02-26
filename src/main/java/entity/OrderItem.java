@@ -39,9 +39,16 @@ public class OrderItem {
         this.orderId = orderId;
         this.quantity = quantity;
     }
+    public void setOrderItems(int productId, int orderId, int quantity) {
+        this.productId = productId;
+        this.orderId = orderId;
+        this.quantity = quantity;
+    }
 
     public OrderItem() {
     }
+
+
 
     public Long getOrderItemId() {
         return orderItemId;
