@@ -4,7 +4,6 @@ import entity.Product;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.Type;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import dao.DaoManager;
 import entity.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-import util.Role;
+import Enum.Role;
 
 import java.util.List;
 import java.util.Map;

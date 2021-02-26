@@ -1,4 +1,4 @@
-package util;
+package Enum;
 
 public enum Type {
     PHONE,

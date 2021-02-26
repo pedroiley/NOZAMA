@@ -1,11 +1,10 @@
 package controller;
 
 import dao.DaoManager;
-import entity.OrderItem;
 import entity.Product;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-import util.Type;
+import Enum.Type;
 
 import java.util.List;
 import java.util.Map;

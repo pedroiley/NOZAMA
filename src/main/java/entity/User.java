@@ -2,7 +2,7 @@ package entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import util.Role;
+import Enum.Role;
 
 import javax.persistence.*;
 import java.util.Date;
