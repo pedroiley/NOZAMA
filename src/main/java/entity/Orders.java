@@ -8,12 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = "orders", name = "orders")
-public class Order {
+@Table(schema = "customerOrders", name = "customerOrder")
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_Id")
-    private Long orderId;
+    private int orderId;
 
     @Column(name = "user_Id")
     private int userId;
@@ -28,23 +28,18 @@ public class Order {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Order(int userId) {
+    public Orders(int userId) {
         this.userId = userId;
     }
 
-    public Order(Long orderId) {
-        this.orderId = orderId;
+    public Orders(){
     }
 
-    public Order(){
-    }
-
-
-    public Long getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 

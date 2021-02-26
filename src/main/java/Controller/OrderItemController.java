@@ -16,17 +16,17 @@ public class OrderItemController {
 
     @PostMapping(path = "/orderItem", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void createOrderItem(@RequestBody Map<String, Object> body){
+    public void createOrderItem( @RequestBody Map<String, Object> body){
         OrderItem oi = new OrderItem(
-                (Integer)body.get("productId"),
-                (Integer)body.get("orderId"),1);
+                (int)body.get("productId"),
+                (int)body.get("orderId"),1);
 
         DM.getOrderItemDao().createOrderItem(oi);
     }
 
     @PutMapping(path = "/orderItem/{orderItemId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void updateOrderItem(@PathVariable long orderItemId , @RequestBody Map<String, Object> body)
+    public void updateOrderItem(@PathVariable int orderItemId , @RequestBody Map<String, Object> body)
     {
         OrderItem oi3 = DM.getOrderItemDao().getOrderItem(orderItemId);
 
@@ -40,7 +40,7 @@ public class OrderItemController {
 
     @DeleteMapping(path = "/orderItem", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void deleteOrderItem(@RequestBody Map<String, Long> body){
+    public void deleteOrderItem(@RequestBody Map<String, Integer> body){
         OrderItem oi2 =  DM.getOrderItemDao().getOrderItem(body.get("orderItemId"));
 
         DM.getOrderItemDao().deleteOrderItem(oi2);
@@ -50,7 +50,7 @@ public class OrderItemController {
     @ResponseBody
     public OrderItem readOrderItem(@RequestBody Map<String, Object> body)
     {
-        return DM.getOrderItemDao().getOrderItem((Long)body.get("orderItemId"));
+        return DM.getOrderItemDao().getOrderItem((int)body.get("orderItemId"));
     }
 
     @GetMapping (path = "/orderItem/list", consumes = "application/json", produces = "application/json")

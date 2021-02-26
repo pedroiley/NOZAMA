@@ -27,7 +27,7 @@ public class OrderItemDao {
         session.close();
     }
 
-    public OrderItem getOrderItem(Long orderItemId) {
+    public OrderItem getOrderItem(int orderItemId) {
         Session session = Hibernate.getSessionFactory().openSession();
         try {
             OrderItem orderItem = session.find(OrderItem.class, orderItemId);
@@ -43,7 +43,9 @@ public class OrderItemDao {
 
     public List<OrderItem> getOrderItems() {
         Session session = Hibernate.getSessionFactory().openSession();
-        return session.createQuery("from OrderItem", OrderItem.class).list();
+        List<OrderItem> orderItemList = session.createQuery("from OrderItem", OrderItem.class).list();
+        session.close();
+        return orderItemList;
     }
 
     public void updateOrderItem(OrderItem savedOrderItem) {

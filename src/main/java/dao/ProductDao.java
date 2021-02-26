@@ -27,7 +27,7 @@ public class ProductDao{
         session.close();
     }
 
-    public Product getProduct(Long productId) {
+    public Product getProduct(int productId) {
         Session session = Hibernate.getSessionFactory().openSession();
         try {
             Product product = session.find(Product.class, productId);
@@ -55,9 +55,11 @@ public class ProductDao{
         }
     }
 
-    public List<Product> getProduct() {
+    public List<Product> getProducts() {
         Session session = Hibernate.getSessionFactory().openSession();
-        return session.createQuery("from Product", Product.class).list();
+        List<Product> productList = session.createQuery("from Product", Product.class).list();
+        session.close();
+        return productList;
     }
 
     public void updateProduct(Product savedProduct) {
@@ -76,7 +78,7 @@ public class ProductDao{
         session.close();
     }
 
-    public void updateProduct(long productId, Product savedProduct) {
+    public void updateProduct(int productId, Product savedProduct) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {

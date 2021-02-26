@@ -2,8 +2,6 @@ package entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,7 +11,7 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderItem_Id")
-    private Long orderItemId;
+    private int orderItemId;
 
     @Column(name = "product_Id")
     private int productId;
@@ -50,11 +48,11 @@ public class OrderItem {
 
 
 
-    public Long getOrderItemId() {
+    public int getOrderItemId() {
         return orderItemId;
     }
 
-    public void setOrderItemId(Long orderItemId) {
+    public void setOrderItemId(int orderItemId) {
         this.orderItemId = orderItemId;
     }
 

@@ -24,7 +24,7 @@ public class ProductController {
 
     @PutMapping(path = "/product/{productId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void updateProduct(@PathVariable long productId, @RequestBody Map<String, Object> body)
+    public void updateProduct(@PathVariable int productId, @RequestBody Map<String, Object> body)
     {
         Product p3 = DM.getProductDao().getProduct(productId);
 
@@ -39,7 +39,7 @@ public class ProductController {
 
     @DeleteMapping(path = "/product", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void deleteProduct(@RequestBody Map<String, Long> body){
+    public void deleteProduct(@RequestBody Map<String, Integer> body){
         Product p =  DM.getProductDao().getProduct(body.get("orderItemId"));
 
         DM.getProductDao().deleteProduct(p);
@@ -48,12 +48,12 @@ public class ProductController {
     @GetMapping(path = "/product/list", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public List<Product> stockAvailable(){
-        return DM.getProductDao().getProduct();
+        return DM.getProductDao().getProducts();
     }
 
     @GetMapping(path = "product/{productId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public Product findProduct(@PathVariable long productId) {
+    public Product findProduct(@PathVariable int productId) {
         return DM.getProductDao().getProduct(productId);
     }
 

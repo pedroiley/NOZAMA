@@ -26,8 +26,7 @@ public class UserController {
     @PutMapping(path = "/user/{userId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void UpdateUser(
-            @PathVariable long userId,
-            @RequestBody Map<String, Object> body) {
+            @PathVariable int userId,@RequestBody Map<String, Object> body) {
         User u = DM.getUserDao().getUser(userId);
         u.setUserAttributes(
                 body.get("username").toString(),
@@ -39,7 +38,7 @@ public class UserController {
 
     @DeleteMapping(path = "/user/{userId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void deleteUser(@PathVariable long userId) {
+    public void deleteUser(@PathVariable int userId) {
 
         User u1 = DM.getUserDao().getUser(userId);
         DM.getUserDao().deleteUser(u1);
@@ -47,7 +46,7 @@ public class UserController {
 
     @GetMapping(path = "/user/{userId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public User findUser(@PathVariable long userId) {
+    public User findUser(@PathVariable int userId) {
         return DM.getUserDao().getUser(userId);
     }
 
@@ -59,7 +58,7 @@ public class UserController {
 
     @GetMapping(path = "/bankAccount/{userId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public int updateBankAccount(@PathVariable long userId){
+    public int updateBankAccount(@PathVariable int userId){
         return DM.getUserDao().getUser(userId).getBankStatement();
     }
 

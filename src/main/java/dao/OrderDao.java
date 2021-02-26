@@ -1,7 +1,7 @@
 package dao;
 
-import entity.Order;
 import entity.OrderItem;
+import entity.Orders;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,12 +11,12 @@ public class OrderDao {
     public OrderDao() {
     }
 
-    public void createOrder(Order order) {
+    public void createOrder(Orders orders) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(order);
+            session.save(orders);
             transaction.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -27,12 +27,12 @@ public class OrderDao {
         session.close();
     }
 
-    public void updateOrder(Order savedOrder) {
+    public void updateOrder(Orders savedOrders) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(savedOrder);
+            session.update(savedOrders);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -43,12 +43,12 @@ public class OrderDao {
         session.close();
     }
 
-    public Order getOrder(Long orderId) {
+    public Orders getOrder(int orderId) {
         Session session = Hibernate.getSessionFactory().openSession();
         try {
-            Order order = session.find(Order.class, orderId);
+            Orders orders = session.find(Orders.class, orderId);
             session.close();
-            return order;
+            return orders;
         } catch (Exception ex) {
             session.close();
             System.out.println("Unable to find the order with id: " + orderId);
@@ -57,19 +57,19 @@ public class OrderDao {
         }
     }
 
-
-
-    public List<Order> getOrders() {
+    public List<Orders> getOrders() {
         Session session = Hibernate.getSessionFactory().openSession();
-        return session.createQuery("from orders", Order.class).list();
+        List<Orders> ordersList = session.createQuery("from CustomerOrder", Orders.class).list();
+        session.close();
+        return ordersList;
     }
 
-    public void deleteOrder(Order savedOrder) {
+    public void deleteOrder(Orders savedOrders) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.delete(savedOrder);
+            session.delete(savedOrders);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();

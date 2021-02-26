@@ -27,7 +27,7 @@ public class UserDao {
         session.close();
     }
 
-    public User getUser(Long userId) {
+    public User getUser(int userId) {
         Session session = Hibernate.getSessionFactory().openSession();
         try {
             User user = session.find(User.class, userId);
@@ -43,7 +43,9 @@ public class UserDao {
 
     public List<User> getUser() {
         Session session = Hibernate.getSessionFactory().openSession();
-        return session.createQuery("from User", User.class).list();
+        List<User> userList = session.createQuery("from User", User.class).list();
+        session.close();
+        return userList;
     }
 
     public void updateUser(User savedUser) {

@@ -2,7 +2,7 @@ package util;
 
 import java.util.Properties;
 
-import entity.Order;
+import entity.Orders;
 import entity.Product;
 import entity.User;
 import entity.OrderItem;
@@ -33,7 +33,7 @@ public class Hibernate {
             configuration.setProperties(properties);
             // all entities need to be registered
             configuration.addAnnotatedClass(User.class);
-            configuration.addAnnotatedClass(Order.class);
+            configuration.addAnnotatedClass(Orders.class);
             configuration.addAnnotatedClass(OrderItem.class);
             configuration.addAnnotatedClass(Product.class);
 //            configuration.addAnnotatedClass(CLASSNAME.class);
