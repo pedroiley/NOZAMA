@@ -14,7 +14,7 @@ public class OrderController {
 
     private DaoManager DM = new DaoManager();
 
-    @PostMapping(path = "/Order", consumes = "application/json")
+    @PostMapping(path = "/order", consumes = "application/json")
     @ResponseBody
     public void createOrder(@RequestBody Map<String, Integer> body){
         Order or = new Order(body.get("userId"));
@@ -22,7 +22,7 @@ public class OrderController {
         DM.getOrderDao().createOrder(or);
     }
 
-    @PutMapping(path = "/Order/{orderId}", consumes = "application/json")
+    @PutMapping(path = "/order/{orderId}", consumes = "application/json")
     @ResponseBody
     public void updateOrder(@PathVariable long orderId, @RequestBody Map<String, Object> body)
     {
@@ -32,22 +32,22 @@ public class OrderController {
         DM.getOrderDao().updateOrder(o);
     }
 
-    @DeleteMapping(path = "/Order", consumes = "application/json")
+    @DeleteMapping(path = "/order/{orderId}", consumes = "application/json")
     @ResponseBody
-    public void deleteOrder(@RequestBody Map<String, Long> body){
-        Order or2 =  DM.getOrderDao().getOrder(body.get("orderId"));
+    public void deleteOrder(@PathVariable long orderId){
+        Order or2 =  DM.getOrderDao().getOrder(orderId);
 
         DM.getOrderDao().deleteOrder(or2);
     }
 
-    @GetMapping (path = "/Order", consumes = "application/json", produces = "application/json")
+    @GetMapping (path = "/order/{orderId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public Order readOrder(@RequestBody Map<String, Object> body)
+    public Order readOrder(@PathVariable long orderId)
     {
-        return DM.getOrderDao().getOrder((Long)body.get("orderId"));
+        return DM.getOrderDao().getOrder(orderId);
     }
 
-    @GetMapping (path = "/Orders")
+    @GetMapping (path = "/order/list", consumes = "application/json", produces= "application/json")
     @ResponseBody
     public List<Order> readOrders()
     {

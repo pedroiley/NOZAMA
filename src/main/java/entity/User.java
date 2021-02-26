@@ -124,7 +124,7 @@ public class User {
         this.userName = userName;
     }
 
-    public int getBankAccount() {
+    public int getBankStatement() {
         return bankAccount;
     }
 

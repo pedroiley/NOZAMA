@@ -1,6 +1,7 @@
 package controller;
 
 import dao.DaoManager;
+import entity.OrderItem;
 import entity.Product;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +16,14 @@ public class ProductController {
 
     private DaoManager DM = new DaoManager();
 
-    @PostMapping(path = "/product", consumes = "application/json")
+    @PostMapping(path = "/product", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void addProduct(@RequestBody Map<String,Object> body)
     {
         addInventoryItem(body.get("name").toString());
     }
 
-    @PutMapping(path = "/product/{productId}", consumes = "application/json")
+    @PutMapping(path = "/product/{productId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void updateProduct(@PathVariable long productId, @RequestBody Map<String, Object> body)
     {
@@ -37,10 +38,24 @@ public class ProductController {
         DM.getProductDao().updateProduct(p3);
     }
 
-    @GetMapping("/products")
+    @DeleteMapping(path = "/product", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public void deleteProduct(@RequestBody Map<String, Long> body){
+        Product p =  DM.getProductDao().getProduct(body.get("orderItemId"));
+
+        DM.getProductDao().deleteProduct(p);
+    }
+
+    @GetMapping(path = "/product/list", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public List<Product> stockAvailable(){
         return DM.getProductDao().getProduct();
+    }
+
+    @GetMapping(path = "product/{productId}", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public Product findProduct(@PathVariable long productId) {
+        return DM.getProductDao().getProduct(productId);
     }
 
 

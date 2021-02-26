@@ -8,7 +8,6 @@ import util.Role;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 @Component
 @RestController
@@ -16,7 +15,7 @@ public class UserController {
 
     private DaoManager DM = new DaoManager();
 
-    @PostMapping(path = "/user", consumes = "application/json")
+    @PostMapping(path = "/user", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void CreateNewUser(@RequestBody Map<String, Object> body) {
         AddNewUser(
@@ -24,7 +23,7 @@ public class UserController {
                 body.get("password").toString());
     }
 
-    @PutMapping(path = "/user/{userId}", consumes = "application/json")
+    @PutMapping(path = "/user/{userId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void UpdateUser(
             @PathVariable long userId,
@@ -38,7 +37,7 @@ public class UserController {
         DM.getUserDao().updateUser(u);
     }
 
-    @DeleteMapping(path = "/user/{userId}", consumes = "application/json")
+    @DeleteMapping(path = "/user/{userId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void deleteUser(@PathVariable long userId) {
 
@@ -58,20 +57,10 @@ public class UserController {
         return DM.getUserDao().getUser();
     }
 
-    @GetMapping("/bankAccount")
-    public User updateBankAccount(User users){
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter an ID");
-        long id1 = scan.nextLong();
-        User user = DM.getUserDao().getUser(id1);
-        System.out.println(user);
-        Scanner scanAmount = new Scanner(System.in);
-        System.out.println("Enter a quantity");
-        int amount1 = scanAmount.nextInt();
-        user.setBankAccount(user.getBankAccount() + amount1);
-        DM.getUserDao().updateUser(user);
-        return user;
-
+    @GetMapping(path = "/bankAccount/{userId}", consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public int updateBankAccount(@PathVariable long userId){
+        return DM.getUserDao().getUser(userId).getBankStatement();
     }
 
 //    ------------------------------HELPERS-----------------------------------
