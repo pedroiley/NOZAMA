@@ -15,8 +15,8 @@ public class Product {
     @Column(name = "product_Id")
     private int productId;
 
-    @Column(name = "type")
-    private Type type;
+    @Column(name = "category_Id")
+    private Type categoryId;
 
     @Column(name = "price")
     private int price;
@@ -37,16 +37,16 @@ public class Product {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Product(String name, int price, Type type, int amount) {
+    public Product(String name, int price, Type categoryId, int amount) {
 
-        this.type = type;
+        this.categoryId = categoryId;
         this.price = price;
         this.name = name;
         this.amount = amount;
     }
     public void setProductValues(String name, int price, Type type, int amount) {
 
-        this.type = type;
+        this.categoryId = type;
         this.price = price;
         this.name = name;
         this.amount = amount;
@@ -62,12 +62,12 @@ public class Product {
         this.productId = id;
     }
 
-    public Type getType() {
-        return type;
+    public Type getCategoryId() {
+        return categoryId;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setCategoryId(Type categoryId) {
+        this.categoryId = categoryId;
     }
 
     public int getPrice() {
@@ -114,12 +114,10 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "productId=" + productId +
-                ", type=" + type +
+                ", type=" + categoryId +
                 ", price=" + price +
                 ", name='" + name + '\'' +
                 ", amount=" + amount +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

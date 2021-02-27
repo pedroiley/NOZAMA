@@ -2,8 +2,6 @@ package entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,6 +16,9 @@ public class Cart {
     @Column(name = "user_Id")
     private int userId;
 
+    @Column(name = "status")
+    private String status;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -30,9 +31,22 @@ public class Cart {
 
     public Cart(int userId) {
         this.userId = userId;
+        this.status = "Open";
     }
 
     public Cart(){
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatusToOpen() {
+        this.status = "Open";
+    }
+
+    public void setStatusToClose() {
+        this.status = "Close";
     }
 
     public int getCartId() {
@@ -71,8 +85,7 @@ public class Cart {
     public String toString() {
         return "Cart{" +
                 "cartId=" + cartId +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
+                "status=" + status +
                 ", userId=" + userId +
                 '}';
     }

@@ -22,6 +22,9 @@ public class CartItem {
     @Column(name = "quantity")
     private int quantity;
 
+    @Column(name = "price")
+    private int price;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -32,24 +35,32 @@ public class CartItem {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public CartItem(int productId, int cartId, int quantity) {
+    public CartItem(int productId, int cartId, int quantity, int price) {
         this.productId = productId;
         this.cartId = cartId;
         this.quantity = quantity;
+        this.price = price;
     }
-    public void setCartItems(int productId, int cartId, int quantity) {
+    public void setCartItems(int productId, int cartId, int quantity, int price) {
         this.productId = productId;
         this.cartId = cartId;
         this.quantity = quantity;
+        this.price = price;
     }
 
     public CartItem() {
     }
 
-
-
     public int getCartItemId() {
         return cartItemId;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public void setCartItemId(int cartItemId) {
@@ -102,8 +113,7 @@ public class CartItem {
                 "cartId=" + cartId +
                 "productId=" + productId +
                 ", quantity=" + quantity +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
+                ", price=" + price +
                 '}';
     }
 }

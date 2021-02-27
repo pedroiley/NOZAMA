@@ -5,6 +5,7 @@ import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CartItemDao {
 
@@ -46,6 +47,16 @@ public class CartItemDao {
         List<CartItem> cartItemList = session.createQuery("from CartItem", CartItem.class).list();
         session.close();
         return cartItemList;
+    }
+
+    public List<CartItem> getCartItemsByCartId(int cartId) {
+        Session session = Hibernate.getSessionFactory().openSession();
+        List<CartItem> cartItemListByCartId = session.createQuery("from CartItem", CartItem.class).
+                stream().
+                filter(cartItem -> cartItem.getCartId() == cartId).
+                collect(Collectors.toList());
+        session.close();
+        return cartItemListByCartId;
     }
 
     public void updateCartItem(CartItem savedCartItem) {

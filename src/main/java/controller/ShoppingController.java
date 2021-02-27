@@ -60,8 +60,10 @@ public class ShoppingController {
         DM.getCartDao().createCart(c);
         Product TV = new Product("TV", 200, Type.TV, 999);
         DM.getProductDao().createProduct(TV);
-        CartItem ci = new CartItem(TV.getProductId(), c.getCartId(), 1);
+        CartItem ci = new CartItem(TV.getProductId(), c.getCartId(), 1, TV.getPrice());
         DM.getCartItemDao().createCartItem(ci);
     }
+
+
 }
 

@@ -2,58 +2,61 @@ package controller;
 
 import dao.DaoManager;
 import entity.CartItem;
-import org.springframework.stereotype.Component;
+import entity.Product;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class CartItemController {
 
-    private DaoManager DM = new DaoManager();
+    private DaoManager dm = new DaoManager();
 
     @PostMapping(path = "/cartItem", consumes = "application/json", produces = "application/json")
     public CartItem createCartItem( @RequestBody CartItem cartItem){
+
+        Product p = dm.getProductDao().getProduct(cartItem.getProductId());
         CartItem oi = new CartItem(
                 cartItem.getProductId(),
                 cartItem.getCartId(),
-                1);
+                1,
+                p.getPrice());
 
-        DM.getCartItemDao().createCartItem(oi);
+        dm.getCartItemDao().createCartItem(oi);
         return oi;
     }
 
     @PutMapping(path = "/cartItem/{cartItemId}", consumes = "application/json", produces = "application/json")
     public CartItem updateCartItem(@PathVariable int cartItemId , @RequestBody CartItem cartItem)
     {
-        CartItem oi3 = DM.getCartItemDao().getCartItem(cartItemId);
+        CartItem oi3 = dm.getCartItemDao().getCartItem(cartItemId);
 
         oi3.setCartItems(
                 cartItem.getProductId(),
                  cartItem.getCartId(),
-                cartItem.getQuantity());
+                cartItem.getQuantity(),
+                cartItem.getPrice());
 
-        DM.getCartItemDao().updateCartItem(oi3);
+        dm.getCartItemDao().updateCartItem(oi3);
         return oi3;
     }
 
     @DeleteMapping(path = "/cartItem", consumes = "application/json", produces = "application/json")
     public void deleteCartItem(@RequestBody CartItem cartItem){
-        CartItem oi2 =  DM.getCartItemDao().getCartItem(cartItem.getCartItemId());
+        CartItem oi2 =  dm.getCartItemDao().getCartItem(cartItem.getCartItemId());
 
-        DM.getCartItemDao().deleteCartItem(oi2);
+        dm.getCartItemDao().deleteCartItem(oi2);
     }
 
     @GetMapping (path = "/cartItem", consumes = "application/json", produces = "application/json")
     public CartItem readCartItem(@RequestBody CartItem cartItem)
     {
-        return DM.getCartItemDao().getCartItem(cartItem.getCartItemId());
+        return dm.getCartItemDao().getCartItem(cartItem.getCartItemId());
     }
 
     @GetMapping (path = "/cartItem/list", consumes = "application/json", produces = "application/json")
     public List<CartItem> readCartItems()
     {
-        return DM.getCartItemDao().getCartItems();
+        return dm.getCartItemDao().getCartItems();
     }
 }

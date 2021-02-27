@@ -30,7 +30,7 @@ public class ProductController {
         p3.setProductValues(
                 product.getName(),
                 product.getPrice(),
-                product.getType(),
+                product.getCategoryId(),
                 product.getAmount());
 
         DM.getProductDao().updateProduct(p3);
