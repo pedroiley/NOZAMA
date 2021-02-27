@@ -52,7 +52,7 @@ public class ShoppingController {
         }
     }
 
-    @PostMapping(path = "/CreateMockData", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/createMockData", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void createMockedData() {
         User u = new User("TestUser","TestEmail@TestEmail.com", "Test123", Role.Admin, 1000 );
