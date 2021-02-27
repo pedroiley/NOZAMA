@@ -19,7 +19,7 @@ public class CartItemController {
     public void createCartItem( @RequestBody Map<String, Object> body){
         CartItem oi = new CartItem(
                 (int)body.get("productId"),
-                (int)body.get("orderId"),1);
+                (int)body.get("cartId"),1);
 
         DM.getCartItemDao().createCartItem(oi);
     }

@@ -42,7 +42,7 @@ public class CartController {
 
     @GetMapping (path = "/cart/{cartId}", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public Cart readOrder(@PathVariable int cartId)
+    public Cart readCart(@PathVariable int cartId)
     {
         return DM.getCartDao().getCart(cartId);
     }

@@ -40,7 +40,7 @@ public class ProductController {
     @DeleteMapping(path = "/product", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public void deleteProduct(@RequestBody Map<String, Integer> body){
-        Product p =  DM.getProductDao().getProduct(body.get("orderItemId"));
+        Product p =  DM.getProductDao().getProduct(body.get("cartItemId"));
 
         DM.getProductDao().deleteProduct(p);
     }
