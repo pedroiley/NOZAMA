@@ -12,6 +12,8 @@ import java.util.Map;
 @Component
 @RestController
 public class UserController {
+    //customerController
+    //Deserialize User in Postmapping
 
     private DaoManager DM = new DaoManager();
 

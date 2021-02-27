@@ -9,48 +9,42 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@Component
 public class CartController {
 
-    private DaoManager DM = new DaoManager();
+    private DaoManager dm = new DaoManager();
 
     @PostMapping(path = "/cart", consumes = "application/json")
-    @ResponseBody
-    public void createCart(@RequestBody Map<String, Integer> body){
-        Cart or = new Cart(body.get("userId"));
+    public void createCart(@RequestBody Cart cart){
+        Cart or = new Cart(cart.getUserId());
 
-        DM.getCartDao().createCart(or);
+        dm.getCartDao().createCart(or);
     }
 
     @PutMapping(path = "/cart/{cartId}", consumes = "application/json")
-    @ResponseBody
     public void updateCart(@PathVariable int cartId, @RequestBody Map<String, Object> body)
     {
-        Cart c = DM.getCartDao().getCart(cartId);
+        Cart c = dm.getCartDao().getCart(cartId);
 
         c.setUserId((Integer)body.get("userId"));
-        DM.getCartDao().updateCart(c);
+        dm.getCartDao().updateCart(c);
     }
 
     @DeleteMapping(path = "/cart/{cartId}", consumes = "application/json")
-    @ResponseBody
     public void deleteCart(@PathVariable int cartId){
-        Cart or2 =  DM.getCartDao().getCart(cartId);
+        Cart or2 =  dm.getCartDao().getCart(cartId);
 
-        DM.getCartDao().deleteCart(or2);
+        dm.getCartDao().deleteCart(or2);
     }
 
     @GetMapping (path = "/cart/{cartId}", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public Cart readCart(@PathVariable int cartId)
     {
-        return DM.getCartDao().getCart(cartId);
+        return dm.getCartDao().getCart(cartId);
     }
 
     @GetMapping (path = "/cart/list", consumes = "application/json", produces= "application/json")
-    @ResponseBody
     public List<Cart> readCarts()
     {
-        return DM.getCartDao().getCarts();
+        return dm.getCartDao().getCarts();
     }
 }

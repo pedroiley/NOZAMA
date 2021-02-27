@@ -8,24 +8,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@Component
 @RestController
 public class CartItemController {
 
     private DaoManager DM = new DaoManager();
 
     @PostMapping(path = "/cartItem", consumes = "application/json", produces = "application/json")
-    @ResponseBody
-    public void createCartItem( @RequestBody Map<String, Object> body){
+    public void createCartItem( @RequestBody CartItem cartItem){
         CartItem oi = new CartItem(
-                (int)body.get("productId"),
-                (int)body.get("cartId"),1);
+                cartItem.getProductId(),
+                cartItem.getCartId(),
+                1);
 
         DM.getCartItemDao().createCartItem(oi);
     }
 
     @PutMapping(path = "/cartItem/{cartItemId}", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public void updateCartItem(@PathVariable int cartItemId , @RequestBody Map<String, Object> body)
     {
         CartItem oi3 = DM.getCartItemDao().getCartItem(cartItemId);
@@ -39,7 +37,6 @@ public class CartItemController {
     }
 
     @DeleteMapping(path = "/cartItem", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public void deleteCartItem(@RequestBody Map<String, Integer> body){
         CartItem oi2 =  DM.getCartItemDao().getCartItem(body.get("cartItemId"));
 
@@ -47,14 +44,12 @@ public class CartItemController {
     }
 
     @GetMapping (path = "/cartItem", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public CartItem readCartItem(@RequestBody Map<String, Object> body)
     {
         return DM.getCartItemDao().getCartItem((int)body.get("cartItemId"));
     }
 
     @GetMapping (path = "/cartItem/list", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public List<CartItem> readCartItems()
     {
         return DM.getCartItemDao().getCartItems();

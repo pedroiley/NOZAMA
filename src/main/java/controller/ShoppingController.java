@@ -29,7 +29,6 @@ public class ShoppingController {
     }
 
     @DeleteMapping(path = "/cleanDatabase", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public void cleanDatabase() {
         List<User> uList = DM.getUserDao().getUser();
         for (User user : uList) {
@@ -53,7 +52,6 @@ public class ShoppingController {
     }
 
     @PostMapping(path = "/createMockData", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public void createMockedData() {
         User u = new User("TestUser","TestEmail@TestEmail.com", "Test123", Role.Admin, 1000 );
         Cart c = new Cart(u.getId());

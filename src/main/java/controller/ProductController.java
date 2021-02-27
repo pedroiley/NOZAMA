@@ -77,4 +77,9 @@ public class ProductController {
             System.out.println("Product was not found.");
         }
     }
+
+    private void IsProductCreated(String name) {
+        name.toUpperCase();
+        Product p = DM.getProductDao().getProduct(name);
+    }
 }
