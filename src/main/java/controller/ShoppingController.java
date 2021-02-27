@@ -56,14 +56,14 @@ public class ShoppingController {
     @ResponseBody
     public void createMockedData() {
         User u = new User("TestUser","TestEmail@TestEmail.com", "Test123", Role.Admin, 1000 );
-        Cart o = new Cart(u.getId());
+        Cart c = new Cart(u.getId());
         Product TV = new Product("TV", 200, Type.TV, 999);
-        CartItem oi = new CartItem(TV.getProductId(), o.getCartId(), 1);
+        CartItem ci = new CartItem(TV.getProductId(), c.getCartId(), 1);
 
         DM.getUserDao().createUser(u);
-        DM.getCartDao().createCart(o);
+        DM.getCartDao().createCart(c);
         DM.getProductDao().createProduct(TV);
-        DM.getCartItemDao().createCartItem(oi);
+        DM.getCartItemDao().createCartItem(ci);
     }
 }
 

@@ -21,23 +21,11 @@ public class DaoManager {
         return cartItemDao;
     }
 
-    public void setCartItemDao(CartItemDao cartItemDao) {
-        this.cartItemDao = cartItemDao;
-    }
-
     public ProductDao getProductDao() {
         return productDao;
     }
 
-    public void setProductDao(ProductDao productDao) {
-        this.productDao = productDao;
-    }
-
     public UserDao getUserDao() {
         return userDao;
-    }
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
     }
 }
