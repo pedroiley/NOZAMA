@@ -18,24 +18,26 @@ public class UserController {
     private DaoManager DM = new DaoManager();
 
     @PostMapping(path = "/user", consumes = "application/json", produces = "application/json")
-    @ResponseBody
-    public void CreateNewUser(@RequestBody Map<String, Object> body) {
-        AddNewUser(
+    public User CreateNewUser(@RequestBody Map<String, Object> body) {
+        User u = AddNewUser(
                 body.get("username").toString(),
                 body.get("password").toString());
+
+        return u;
     }
 
     @PutMapping(path = "/user/{userId}", consumes = "application/json", produces = "application/json")
-    @ResponseBody
-    public void UpdateUser(
-            @PathVariable int userId,@RequestBody Map<String, Object> body) {
+    public User UpdateUser(@PathVariable int userId,
+                           @RequestBody User user) {
         User u = DM.getUserDao().getUser(userId);
         u.setUserAttributes(
-                body.get("username").toString(),
-                body.get("password").toString(),
-                body.get("email").toString(),
-                (Integer)body.get("bankAccount"));
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
+                user.getBankStatement());
         DM.getUserDao().updateUser(u);
+
+        return u;
     }
 
     @DeleteMapping(path = "/user/{userId}", consumes = "application/json", produces = "application/json")
@@ -65,10 +67,11 @@ public class UserController {
     }
 
 //    ------------------------------HELPERS-----------------------------------
-    private void AddNewUser(String username, String password)
+    private User AddNewUser(String username, String password)
     {
         User u = new User(username," ", password, Role.Regular, 0);
         DM.getUserDao().createUser(u);
+        return u;
     }
 }
 

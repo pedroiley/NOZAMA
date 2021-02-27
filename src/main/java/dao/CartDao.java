@@ -76,6 +76,5 @@ public class CartDao {
                 transaction.rollback();
             }
         }
-        session.close();
     }
 }

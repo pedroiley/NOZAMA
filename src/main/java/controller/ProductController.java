@@ -16,37 +16,38 @@ public class ProductController {
     private DaoManager DM = new DaoManager();
 
     @PostMapping(path = "/product", consumes = "application/json", produces = "application/json")
-    @ResponseBody
-    public void addProduct(@RequestBody Map<String,Object> body)
+    public Product addProduct(@RequestBody Product product)
     {
-        addInventoryItem(body.get("name").toString());
+        addInventoryItem(product.getName());
+        return product;
     }
 
     @PutMapping(path = "/product/{productId}", consumes = "application/json", produces = "application/json")
-    @ResponseBody
-    public void updateProduct(@PathVariable int productId, @RequestBody Map<String, Object> body)
+    public Product updateProduct(@PathVariable int productId, @RequestBody Product product)
     {
         Product p3 = DM.getProductDao().getProduct(productId);
 
         p3.setProductValues(
-                body.get("name").toString(),
-                (int)body.get("price"),
-                (Type)body.get("type"),
-                (int)body.get("amount"));
+                product.getName(),
+                product.getPrice(),
+                product.getType(),
+                product.getAmount());
 
         DM.getProductDao().updateProduct(p3);
+
+        return p3;
     }
 
     @DeleteMapping(path = "/product", consumes = "application/json", produces = "application/json")
-    @ResponseBody
-    public void deleteProduct(@RequestBody Map<String, Integer> body){
-        Product p =  DM.getProductDao().getProduct(body.get("cartItemId"));
+    public Product deleteProduct(@RequestBody Product product){
+        Product p =  DM.getProductDao().getProduct(product.getProductId());
 
         DM.getProductDao().deleteProduct(p);
+
+        return p;
     }
 
     @GetMapping(path = "/product/list", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public List<Product> stockAvailable(){
         return DM.getProductDao().getProducts();
     }

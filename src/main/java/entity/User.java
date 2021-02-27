@@ -16,7 +16,7 @@ public class User {
     private int id;
 
     @Column(name = "username")
-    private String userName;
+    private String username;
 
     @Column(name = "email")
     private String email;
@@ -43,16 +43,16 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String email, String password, Role role, int bankAccount) {
-        this.userName = userName;
+    public User(String username, String email, String password, Role role, int bankAccount) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
         this.bankAccount = bankAccount;
     }
 
-    public User(String userName, String email, String password, int bankAccount) {
-        this.userName = userName;
+    public User(String username, String email, String password, int bankAccount) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.role = Role.Regular;
@@ -61,7 +61,7 @@ public class User {
 
     public void setUserAttributes(String userName, String email, String password, int bankAccount)
     {
-        this.userName = userName;
+        this.username = userName;
         this.email = email;
         this.password = password;
         this.role = Role.Regular;
@@ -116,12 +116,12 @@ public class User {
         this.role = role;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getBankStatement() {
@@ -136,7 +136,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                "username=" + userName +
+                "username=" + username +
                 ", email='" + email + '\'' +
                 ", password=" + password +
                 ", role=" + role +
