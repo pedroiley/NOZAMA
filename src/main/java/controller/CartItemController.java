@@ -39,11 +39,10 @@ public class CartItemController {
     }
 
     @DeleteMapping(path = "/cartItem", consumes = "application/json", produces = "application/json")
-    public CartItem deleteCartItem(@RequestBody CartItem cartItem){
+    public void deleteCartItem(@RequestBody CartItem cartItem){
         CartItem oi2 =  DM.getCartItemDao().getCartItem(cartItem.getCartItemId());
 
         DM.getCartItemDao().deleteCartItem(oi2);
-        return oi2;
     }
 
     @GetMapping (path = "/cartItem", consumes = "application/json", produces = "application/json")

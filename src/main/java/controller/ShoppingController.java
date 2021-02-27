@@ -55,13 +55,12 @@ public class ShoppingController {
     @PostMapping(path = "/createMockData", consumes = "application/json", produces = "application/json")
     public void createMockedData() {
         User u = new User("TestUser","TestEmail@TestEmail.com", "Test123", Role.Admin, 1000 );
-        Cart c = new Cart(u.getId());
-        Product TV = new Product("TV", 200, Type.TV, 999);
-        CartItem ci = new CartItem(TV.getProductId(), c.getCartId(), 1);
-
         DM.getUserDao().createUser(u);
+        Cart c = new Cart(u.getId());
         DM.getCartDao().createCart(c);
+        Product TV = new Product("TV", 200, Type.TV, 999);
         DM.getProductDao().createProduct(TV);
+        CartItem ci = new CartItem(TV.getProductId(), c.getCartId(), 1);
         DM.getCartItemDao().createCartItem(ci);
     }
 }

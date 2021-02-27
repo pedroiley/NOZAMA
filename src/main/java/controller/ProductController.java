@@ -39,12 +39,10 @@ public class ProductController {
     }
 
     @DeleteMapping(path = "/product", consumes = "application/json", produces = "application/json")
-    public Product deleteProduct(@RequestBody Product product){
+    public void deleteProduct(@RequestBody Product product){
         Product p =  DM.getProductDao().getProduct(product.getProductId());
 
         DM.getProductDao().deleteProduct(p);
-
-        return p;
     }
 
     @GetMapping(path = "/product/list", consumes = "application/json", produces = "application/json")
@@ -53,7 +51,6 @@ public class ProductController {
     }
 
     @GetMapping(path = "product/{productId}", consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public Product findProduct(@PathVariable int productId) {
         return DM.getProductDao().getProduct(productId);
     }
