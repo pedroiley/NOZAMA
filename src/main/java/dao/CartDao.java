@@ -1,22 +1,21 @@
 package dao;
 
-import entity.OrderItem;
-import entity.Orders;
+import entity.Cart;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class OrderDao {
-    public OrderDao() {
+public class CartDao {
+    public CartDao() {
     }
 
-    public void createOrder(Orders orders) {
+    public void createCart(Cart cart) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(orders);
+            session.save(cart);
             transaction.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -27,12 +26,12 @@ public class OrderDao {
         session.close();
     }
 
-    public void updateOrder(Orders savedOrders) {
+    public void updateCart(Cart savedCart) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(savedOrders);
+            session.update(savedCart);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -43,33 +42,33 @@ public class OrderDao {
         session.close();
     }
 
-    public Orders getOrder(int orderId) {
+    public Cart getCart(int cartId) {
         Session session = Hibernate.getSessionFactory().openSession();
         try {
-            Orders orders = session.find(Orders.class, orderId);
+            Cart cart = session.find(Cart.class, cartId);
             session.close();
-            return orders;
+            return cart;
         } catch (Exception ex) {
             session.close();
-            System.out.println("Unable to find the order with id: " + orderId);
+            System.out.println("Unable to find the cart with id: " + cartId);
             ex.printStackTrace();
             return null;
         }
     }
 
-    public List<Orders> getOrders() {
+    public List<Cart> getCarts() {
         Session session = Hibernate.getSessionFactory().openSession();
-        List<Orders> ordersList = session.createQuery("from CustomerOrder", Orders.class).list();
+        List<Cart> cartList = session.createQuery("from Cart", Cart.class).list();
         session.close();
-        return ordersList;
+        return cartList;
     }
 
-    public void deleteOrder(Orders savedOrders) {
+    public void deleteCart(Cart savedCart) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.delete(savedOrders);
+            session.delete(savedCart);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();

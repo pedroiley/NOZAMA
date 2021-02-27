@@ -2,23 +2,19 @@ package dao;
 
 public class DaoManager {
 
-    private OrderDao orderDao;
+    private CartDao cartDao;
     private OrderItemDao orderItemDao;
     private ProductDao productDao;
     private UserDao userDao;
     public DaoManager() {
-        this.orderDao = new OrderDao();
+        this.cartDao = new CartDao();
         this.orderItemDao = new OrderItemDao();
         this.productDao = new ProductDao();
         this.userDao = new UserDao();
     }
 
-    public OrderDao getOrderDao() {
-        return orderDao;
-    }
-
-    public void setOrderDao(OrderDao orderDao) {
-        this.orderDao = orderDao;
+    public CartDao getCartDao() {
+        return cartDao;
     }
 
     public OrderItemDao getOrderItemDao() {

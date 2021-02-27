@@ -1,7 +1,7 @@
 package controller;
 
 import dao.DaoManager;
-import entity.Orders;
+import entity.Cart;
 import entity.OrderItem;
 import entity.User;
 import entity.Product;
@@ -36,9 +36,9 @@ public class ShoppingController {
             DM.getUserDao().deleteUser(user);
         }
 
-        List<Orders> oList = DM.getOrderDao().getOrders();
-        for (Orders orders : oList) {
-            DM.getOrderDao().deleteOrder(orders);
+        List<Cart> oList = DM.getCartDao().getCarts();
+        for (Cart cart : oList) {
+            DM.getCartDao().deleteCart(cart);
         }
 
         List<OrderItem> oiList = DM.getOrderItemDao().getOrderItems();
@@ -56,12 +56,12 @@ public class ShoppingController {
     @ResponseBody
     public void createMockedData() {
         User u = new User("TestUser","TestEmail@TestEmail.com", "Test123", Role.Admin, 1000 );
-        Orders o = new Orders(u.getId());
+        Cart o = new Cart(u.getId());
         Product TV = new Product("TV", 200, Type.TV, 999);
-        OrderItem oi = new OrderItem(TV.getProductId(), o.getOrderId(), 1);
+        OrderItem oi = new OrderItem(TV.getProductId(), o.getCartId(), 1);
 
         DM.getUserDao().createUser(u);
-        DM.getOrderDao().createOrder(o);
+        DM.getCartDao().createCart(o);
         DM.getProductDao().createProduct(TV);
         DM.getOrderItemDao().createOrderItem(oi);
     }

@@ -8,12 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = "customerOrders", name = "customerOrder")
-public class Orders {
+@Table(schema = "carts", name = "cart")
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_Id")
-    private int orderId;
+    @Column(name = "cart_Id")
+    private int cartId;
 
     @Column(name = "user_Id")
     private int userId;
@@ -28,19 +28,19 @@ public class Orders {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Orders(int userId) {
+    public Cart(int userId) {
         this.userId = userId;
     }
 
-    public Orders(){
+    public Cart(){
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getCartId() {
+        return cartId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 
     public int getUserId() {
@@ -69,8 +69,8 @@ public class Orders {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
+        return "Cart{" +
+                "cartId=" + cartId +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", userId=" + userId +

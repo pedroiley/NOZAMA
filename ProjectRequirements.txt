@@ -13,9 +13,9 @@ Add Roles: in the website you will have two options to access the shop; as owner
 
 Customer:
 
-1. Observation of the shop website: you can see a list, boxes, of different products available. A square in orders to make the login or sign up if you want to register.
+1. Observation of the shop website: you can see a list, boxes, of different products available. A square in cart to make the login or sign up if you want to register.
 2. Registration in the shop: once you click that Square, you can enter information and by clicking finished, a new account and user is created.
-3. Personal profile with information of the customer, money available, possibility to add money and lasts orders made.
+3. Personal profile with information of the customer, money available, possibility to add money and lasts cart made.
 4. Visualize the products available: see, again a list or boxes of products available with the possibility to add them to the cart.
 5. Press button of ending the purchase and get a printed ticket.
 6. Subtract the money used.
@@ -33,12 +33,12 @@ Shop:
 
 HOW TO DO IT?
 
-C1: We need to create the Front End side in orders to make all the products available in a list, be listed in a nice web format. Also, the possibility to have one square with a the possibility to create a new user.
+C1: We need to create the Front End side in cart to make all the products available in a list, be listed in a nice web format. Also, the possibility to have one square with a the possibility to create a new user.
 C2: That square needs to have boxes for name registration, email used, password used. ONce this is done, the new user is saved in the database.
 C3: Name, Surname, Age, Money available, Last purchases, Possibility to add more money.
-C4: Front end side. Possibility to press the products in orders to add them to the purchase1 list.
-C5: Possibility to press a button in orders to finish the purchase.
-C5:Possibility to press a button in orders to finish the purchase.
+C4: Front end side. Possibility to press the products in cart to add them to the purchase1 list.
+C5: Possibility to press a button in cart to finish the purchase.
+C5:Possibility to press a button in cart to finish the purchase.
 C6: Subtract the money.
 C7: Automatic come back to profile or a button to come back to the profile.
 
