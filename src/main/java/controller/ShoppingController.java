@@ -2,7 +2,7 @@ package controller;
 
 import dao.DaoManager;
 import entity.Cart;
-import entity.OrderItem;
+import entity.CartItem;
 import entity.User;
 import entity.Product;
 import org.springframework.boot.SpringApplication;
@@ -41,9 +41,9 @@ public class ShoppingController {
             DM.getCartDao().deleteCart(cart);
         }
 
-        List<OrderItem> oiList = DM.getOrderItemDao().getOrderItems();
-        for (OrderItem orderItem : oiList) {
-            DM.getOrderItemDao().deleteOrderItem(orderItem);
+        List<CartItem> oiList = DM.getCartItemDao().getCartItems();
+        for (CartItem cartItem : oiList) {
+            DM.getCartItemDao().deleteCartItem(cartItem);
         }
 
         List<Product> pList = DM.getProductDao().getProducts();
@@ -58,12 +58,12 @@ public class ShoppingController {
         User u = new User("TestUser","TestEmail@TestEmail.com", "Test123", Role.Admin, 1000 );
         Cart o = new Cart(u.getId());
         Product TV = new Product("TV", 200, Type.TV, 999);
-        OrderItem oi = new OrderItem(TV.getProductId(), o.getCartId(), 1);
+        CartItem oi = new CartItem(TV.getProductId(), o.getCartId(), 1);
 
         DM.getUserDao().createUser(u);
         DM.getCartDao().createCart(o);
         DM.getProductDao().createProduct(TV);
-        DM.getOrderItemDao().createOrderItem(oi);
+        DM.getCartItemDao().createCartItem(oi);
     }
 }
 

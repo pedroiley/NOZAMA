@@ -3,12 +3,12 @@ package dao;
 public class DaoManager {
 
     private CartDao cartDao;
-    private OrderItemDao orderItemDao;
+    private CartItemDao cartItemDao;
     private ProductDao productDao;
     private UserDao userDao;
     public DaoManager() {
         this.cartDao = new CartDao();
-        this.orderItemDao = new OrderItemDao();
+        this.cartItemDao = new CartItemDao();
         this.productDao = new ProductDao();
         this.userDao = new UserDao();
     }
@@ -17,12 +17,12 @@ public class DaoManager {
         return cartDao;
     }
 
-    public OrderItemDao getOrderItemDao() {
-        return orderItemDao;
+    public CartItemDao getCartItemDao() {
+        return cartItemDao;
     }
 
-    public void setOrderItemDao(OrderItemDao orderItemDao) {
-        this.orderItemDao = orderItemDao;
+    public void setCartItemDao(CartItemDao cartItemDao) {
+        this.cartItemDao = cartItemDao;
     }
 
     public ProductDao getProductDao() {

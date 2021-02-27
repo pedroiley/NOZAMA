@@ -5,7 +5,7 @@ import java.util.Properties;
 import entity.Cart;
 import entity.Product;
 import entity.User;
-import entity.OrderItem;
+import entity.CartItem;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -28,13 +28,13 @@ public class Hibernate {
             properties.put(Environment.PASS, applicationProperties.getString("dbPassword"));
             properties.put(Environment.SHOW_SQL, "true");
             properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
-//            properties.put(Environment.HBM2DDL_AUTO, "create-drop");
+            properties.put(Environment.HBM2DDL_AUTO, "create-drop");
             properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
             configuration.setProperties(properties);
             // all entities need to be registered
             configuration.addAnnotatedClass(User.class);
             configuration.addAnnotatedClass(Cart.class);
-            configuration.addAnnotatedClass(OrderItem.class);
+            configuration.addAnnotatedClass(CartItem.class);
             configuration.addAnnotatedClass(Product.class);
 //            configuration.addAnnotatedClass(CLASSNAME.class);
 

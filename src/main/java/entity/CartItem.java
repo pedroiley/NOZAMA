@@ -6,18 +6,18 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = "orderItems", name = "orderItem")
-public class OrderItem {
+@Table(schema = "cartItems", name = "cartItem")
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderItem_Id")
-    private int orderItemId;
+    @Column(name = "cartItem_Id")
+    private int cartItemId;
 
     @Column(name = "product_Id")
     private int productId;
 
-    @Column(name = "order_Id")
-    private int orderId;
+    @Column(name = "cart_Id")
+    private int cartId;
 
     @Column(name = "quantity")
     private int quantity;
@@ -32,28 +32,28 @@ public class OrderItem {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public OrderItem(int productId, int orderId, int quantity) {
+    public CartItem(int productId, int cartId, int quantity) {
         this.productId = productId;
-        this.orderId = orderId;
+        this.cartId = cartId;
         this.quantity = quantity;
     }
-    public void setOrderItems(int productId, int orderId, int quantity) {
+    public void setCartItems(int productId, int cartId, int quantity) {
         this.productId = productId;
-        this.orderId = orderId;
+        this.cartId = cartId;
         this.quantity = quantity;
     }
 
-    public OrderItem() {
+    public CartItem() {
     }
 
 
 
-    public int getOrderItemId() {
-        return orderItemId;
+    public int getCartItemId() {
+        return cartItemId;
     }
 
-    public void setOrderItemId(int orderItemId) {
-        this.orderItemId = orderItemId;
+    public void setCartItemId(int cartItemId) {
+        this.cartItemId = cartItemId;
     }
 
     public int getProductId() {
@@ -64,12 +64,12 @@ public class OrderItem {
         this.productId = productId;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getCartId() {
+        return cartId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 
     public int getQuantity() {
@@ -98,8 +98,8 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return "OrderItem{" +
-                "orderId=" + orderId +
+        return "CartItem{" +
+                "cartId=" + cartId +
                 "productId=" + productId +
                 ", quantity=" + quantity +
                 ", createdAt=" + createdAt +

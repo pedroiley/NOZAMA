@@ -1,22 +1,22 @@
 package dao;
 
-import entity.OrderItem;
+import entity.CartItem;
 import util.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class OrderItemDao {
+public class CartItemDao {
 
-    public OrderItemDao() {
+    public CartItemDao() {
     }
 
-    public void createOrderItem(OrderItem orderItem) {
+    public void createCartItem(CartItem cartItem) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.save(orderItem);
+            session.save(cartItem);
             transaction.commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -27,33 +27,33 @@ public class OrderItemDao {
         session.close();
     }
 
-    public OrderItem getOrderItem(int orderItemId) {
+    public CartItem getCartItem(int cartItemId) {
         Session session = Hibernate.getSessionFactory().openSession();
         try {
-            OrderItem orderItem = session.find(OrderItem.class, orderItemId);
+            CartItem cartItem = session.find(CartItem.class, cartItemId);
             session.close();
-            return orderItem;
+            return cartItem;
         } catch (Exception ex) {
             session.close();
-            System.out.println("Unable to find the orderItem with id: " + orderItemId);
+            System.out.println("Unable to find the cartItem with id: " + cartItemId);
             ex.printStackTrace();
             return null;
         }
     }
 
-    public List<OrderItem> getOrderItems() {
+    public List<CartItem> getCartItems() {
         Session session = Hibernate.getSessionFactory().openSession();
-        List<OrderItem> orderItemList = session.createQuery("from OrderItem", OrderItem.class).list();
+        List<CartItem> cartItemList = session.createQuery("from CartItem", CartItem.class).list();
         session.close();
-        return orderItemList;
+        return cartItemList;
     }
 
-    public void updateOrderItem(OrderItem savedOrderItem) {
+    public void updateCartItem(CartItem savedCartItem) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(savedOrderItem);
+            session.update(savedCartItem);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -64,12 +64,12 @@ public class OrderItemDao {
         session.close();
     }
 
-    public void deleteOrderItem(OrderItem savedOrderItem) {
+    public void deleteCartItem(CartItem savedCartItem) {
         Session session = Hibernate.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.delete(savedOrderItem);
+            session.delete(savedCartItem);
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
