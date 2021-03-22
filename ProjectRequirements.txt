@@ -49,13 +49,6 @@ S4: List of all the customers with their operations done.
 
 ---------------------------
 
-TOOLS WE WILL USE:
-
-C1: Spring or Angular?
-C2: HTML, CSS
-C3: HTML, CSS
-C4: Spring, Angular?
-C5: Java
 
 
 ----------------------------------
