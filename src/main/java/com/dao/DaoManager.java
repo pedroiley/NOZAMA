@@ -6,6 +6,7 @@ public class DaoManager {
     private CartItemDao cartItemDao;
     private ProductDao productDao;
     private UserDao userDao;
+
     public DaoManager() {
         this.cartDao = new CartDao();
         this.cartItemDao = new CartItemDao();

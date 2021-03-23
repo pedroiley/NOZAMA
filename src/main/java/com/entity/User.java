@@ -59,8 +59,7 @@ public class User {
         this.bankAccount = bankAccount;
     }
 
-    public void setUserAttributes(String userName, String email, String password, int bankAccount)
-    {
+    public void setUserAttributes(String userName, String email, String password, int bankAccount) {
         this.username = userName;
         this.email = email;
         this.password = password;

@@ -7,8 +7,8 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class ProductDao{
-        public ProductDao() {
+public class ProductDao {
+    public ProductDao() {
     }
 
     public void createProduct(Product product) {

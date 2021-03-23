@@ -2,6 +2,7 @@ package com.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -34,7 +35,7 @@ public class Cart {
         this.status = "Open";
     }
 
-    public Cart(){
+    public Cart() {
     }
 
     public String getStatus() {

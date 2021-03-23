@@ -44,6 +44,7 @@ public class Product {
         this.name = name;
         this.amount = amount;
     }
+
     public void setProductValues(String name, int price, Type type, int amount) {
 
         this.categoryId = type;
@@ -51,6 +52,7 @@ public class Product {
         this.name = name;
         this.amount = amount;
     }
+
     public Product() {
     }
 

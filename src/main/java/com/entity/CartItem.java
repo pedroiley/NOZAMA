@@ -2,6 +2,7 @@ package com.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -41,6 +42,7 @@ public class CartItem {
         this.quantity = quantity;
         this.price = price;
     }
+
     public void setCartItems(int productId, int cartId, int quantity, int price) {
         this.productId = productId;
         this.cartId = cartId;
